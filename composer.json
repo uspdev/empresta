@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "uspdev/laravel-usp-theme": "^2.0"
+        "uspdev/laravel-usp-theme": "^2.0",
+        "uspdev/senhaunica-socialite": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
