@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -12,9 +13,18 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Categoria::orderBy('nome','asc');
+
+        if($request->busca != null){
+            $query->where('nome', 'LIKE', "%$request->busca%");
+        }
+        $categorias = $query->paginate(50);
+        if ($categorias->count() == null) {
+            $request->session()->flash('alert-danger', 'Não há registros!');
+        }
+        return view('categorias.index')->with('categorias',$categorias);
     }
 
     /**
@@ -24,7 +34,9 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $categoria = new Categoria;
+        return view('categorias.create')->with('categoria', $categoria);
+
     }
 
     /**
@@ -33,9 +45,11 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $categoria = Categoria::create($validated);
+        return redirect("/categorias/$categoria->id");
     }
 
     /**
@@ -46,7 +60,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        return view('categorias.show', compact('categoria'));
     }
 
     /**
@@ -57,7 +71,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.edit')->with('categoria', $categoria);
     }
 
     /**
@@ -67,9 +81,11 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(CategoriaRequest $request, Categoria $categoria)
     {
-        //
+        $validated = $request->validated();
+        $categoria->update($validated);
+        return redirect("/categorias/$categoria->id");
     }
 
     /**
@@ -80,6 +96,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return redirect('/categorias');
     }
 }

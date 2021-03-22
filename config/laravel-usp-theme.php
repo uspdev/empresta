@@ -7,11 +7,11 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Categoria',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/categorias/create',
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Categorias',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/categorias',
     ],
     [
         'type' => 'divider',
@@ -22,11 +22,11 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Material',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/materials/create',
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Material',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/materials',
     ],
     [
         'type' => 'divider',

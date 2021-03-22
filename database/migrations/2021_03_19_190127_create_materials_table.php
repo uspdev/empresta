@@ -16,6 +16,11 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('ativo');
+            $table->integer('codigo');
+            $table->text('descricao');
+            $table->foreignId('categoria_id')->nullable()->constrained('categorias');
+            $table->foreignId('created_by_id')->nullable()->constrained('users');
         });
     }
 
