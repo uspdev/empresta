@@ -18,7 +18,7 @@ class MaterialController extends Controller
         $query = Material::orderBy('codigo','asc');
 
         if($request->busca != null){
-            $query->where('codigo', '=', "%$request->busca%");
+            $query->where('codigo', '=', "$request->busca");
         }
         $materials = $query->paginate(50);
         if ($materials->count() == null) {
