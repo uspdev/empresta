@@ -37,11 +37,11 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Visitante',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/visitantes/create',
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Visitantes',
-        'url' => config('app.url') . '/subitem3',
+        'url' => config('app.url') . '/visitantes',
     ],
 ];
 

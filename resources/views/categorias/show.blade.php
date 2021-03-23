@@ -15,21 +15,17 @@
             </tr>
         </thead>
         <tbody>
-        for categoria->materiais()
+        @foreach($categoria->materials as $material) 
             <tr>
-                <td> material.codigo </td>
-                <td> material.tipo </td>
-                <td> material.ativo  'Sim'  'Não' </td>
+                <td> {{$material->codigo}} </td>
+                <td> {{$material->categoria->nome}} </td>
+                <td> {{$material->ativo ?  'Sim' : 'Não'}} </td>
                 <td>
-                    <a href="materiais/material_id"><span class="oi oi-eye"></span></a>
-                    <a href="materiais/material_id/edit"><span class="oi oi-pencil"></span></a>
+                    <a href="materials/{{$material->id}}"><i class="fas fa-eye"></i></a>
+                    <a href="materials/{{$material->id}}/edit"><i class="fas fa-pencil-alt"></i></a>
                 </td>
             </tr>
-        else
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        endforr
+        @endforeach
         </tbody>
     </table>
 

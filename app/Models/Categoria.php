@@ -11,7 +11,7 @@ class Categoria extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function materiais()
+    public function materials()
     {
         return $this->hasMany(Material::class);
     }

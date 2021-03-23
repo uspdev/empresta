@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visitante;
 use Illuminate\Http\Request;
+use App\Http\Requests\VisitanteRequest;
 
 class VisitanteController extends Controller
 {
@@ -12,9 +13,18 @@ class VisitanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Visitante::orderBy('nome','asc');
+
+        if($request->busca != null){
+            $query->where('nome', 'LIKE', "%$request->busca%");
+        }
+        $visitantes = $query->paginate(50);
+        if ($visitantes->count() == null) {
+            $request->session()->flash('alert-danger', 'Não há registros!');
+        }
+        return view('visitantes.index')->with('visitantes',$visitantes);
     }
 
     /**
@@ -24,7 +34,8 @@ class VisitanteController extends Controller
      */
     public function create()
     {
-        //
+        $visitante = new Visitante;
+        return view('visitantes.create')->with('visitante', $visitante);
     }
 
     /**
@@ -33,9 +44,11 @@ class VisitanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VisitanteRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $visitante = Visitante::create($validated);
+        return redirect("/visitantes/$visitante->id");
     }
 
     /**
@@ -46,7 +59,7 @@ class VisitanteController extends Controller
      */
     public function show(Visitante $visitante)
     {
-        //
+        return view('visitantes.show', compact('visitante'));
     }
 
     /**
@@ -57,7 +70,7 @@ class VisitanteController extends Controller
      */
     public function edit(Visitante $visitante)
     {
-        //
+        return view('visitantes.edit')->with('visitante', $visitante);
     }
 
     /**
@@ -67,9 +80,11 @@ class VisitanteController extends Controller
      * @param  \App\Models\Visitante  $visitante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Visitante $visitante)
+    public function update(VisitanteRequest $request, Visitante $visitante)
     {
-        //
+        $validated = $request->validated();
+        $visitante->update($validated);
+        return redirect("/visitantes/$visitante->id");
     }
 
     /**
@@ -80,6 +95,7 @@ class VisitanteController extends Controller
      */
     public function destroy(Visitante $visitante)
     {
-        //
+        $visitante->delete();
+        return redirect('/visitantes');
     }
 }
