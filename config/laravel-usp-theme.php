@@ -47,24 +47,16 @@ $submenu1 = [
 
 $submenu2 = [
     [
-        'text' => '<i class="fas fa-undo-alt"></i> Devolução',
-        'url' => config('app.url') . '/subitem2',
-    ],
-    [
-        'text' => '<i class="fas fa-handshake"></i> Empréstimos USP',
-        'url' => config('app.url') . '/subitem1',
-    ],
-    [
-        'text' => '<i class="far fa-handshake"></i> Empréstimos Visitantes',
-        'url' => config('app.url') . '/subitem2',
+        'text' => '<i class="fas fa-handshake"></i> Novo Empréstimo',
+        'url' => config('app.url') . '/emprestimos/create',
     ],
     [
         'text' => '<i class="fas fa-stream"></i> Itens Emprestados',
-        'url' => config('app.url') . '/subitem2',
+        'url' => config('app.url') . '/emprestimos',
     ],
     [
         'text' => '<i class="fas fa-chart-bar"></i> Relatório de Empréstimos',
-        'url' => config('app.url') . '/subitem2',
+        'url' => config('app.url') . '/emprestimos/relatorio',
     ],
 
 ];

@@ -47,6 +47,7 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
         $validated = $request->validated();
+        $validated['created_by_id']= auth()->user()->id;
         $material = Material::create($validated);
         return redirect("/materials/$material->id");
     }
