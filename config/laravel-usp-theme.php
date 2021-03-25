@@ -2,61 +2,72 @@
 
 $submenu1 = [
     [
-        'text' => '<i class="fas fa-atom"></i>  SubItem 1',
-        'url' => config('app.url') . '/subitem1',
+        'type' => 'header',
+        'text' => '<i class="far fa-bookmark"></i> Categoria',
     ],
     [
-        'text' => 'SubItem 2',
-        'url' => config('app.url') . '/subitem2',
-        'can' => 'admin',
+        'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Categoria',
+        'url' => config('app.url') . '/categorias/create',
+    ],
+    [
+        'text' => '<i class="fas fa-list-ul"></i> Listar Categorias',
+        'url' => config('app.url') . '/categorias',
     ],
     [
         'type' => 'divider',
     ],
     [
         'type' => 'header',
-        'text' => 'Cabeçalho',
+        'text' => '<i class="fas fa-boxes"></i> Material',
     ],
     [
-        'text' => 'SubItem 3',
-        'url' => config('app.url') . '/subitem3',
+        'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Material',
+        'url' => config('app.url') . '/materials/create',
+    ],
+    [
+        'text' => '<i class="fas fa-list-ul"></i> Listar Material',
+        'url' => config('app.url') . '/materials',
+    ],
+    [
+        'type' => 'divider',
+    ],
+    [
+        'type' => 'header',
+        'text' => '<i class="fas fa-eye"></i> Visitantes',
+    ],
+    [
+        'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Visitante',
+        'url' => config('app.url') . '/visitantes/create',
+    ],
+    [
+        'text' => '<i class="fas fa-list-ul"></i> Listar Visitantes',
+        'url' => config('app.url') . '/visitantes',
     ],
 ];
 
 $submenu2 = [
     [
-        'text' => 'SubItem 1',
-        'url' => config('app.url') . '/subitem1',
+        'text' => '<i class="fas fa-handshake"></i> Novo Empréstimo',
+        'url' => config('app.url') . '/emprestimos/create',
     ],
     [
-        'text' => 'SubItem 2',
-        'url' => config('app.url') . '/subitem2',
-        'can' => 'admin',
+        'text' => '<i class="fas fa-stream"></i> Itens Emprestados',
+        'url' => config('app.url') . '/emprestimos',
     ],
+    [
+        'text' => '<i class="fas fa-chart-bar"></i> Relatório de Empréstimos',
+        'url' => config('app.url') . '/emprestimos/relatorio',
+    ],
+
 ];
 $menu = [
     [
-        'text' => '<i class="fas fa-home"></i> Item 1',
-        'url' => config('app.url') . '/item1',
-    ],
-    [
-        'text' => 'Item 2',
-        'url' => config('app.url') . '/item2',
-        'can' => '',
-    ],
-    [
-        'text' => 'Item 3',
-        'url' => config('app.url') . '/item3',
-        'can' => 'admin',
-    ],
-    [
-        'text' => 'SubMenu1',
+        'text' => '<i class="fas fa-user-cog"></i> Administração',
         'submenu' => $submenu1,
     ],
     [
-        'text' => 'SubMenu2',
+        'text' => '<i class="fas fa-retweet"></i> Empréstimos/Devolução',
         'submenu' => $submenu2,
-        'can' => 'admin',
     ],
 ];
 
