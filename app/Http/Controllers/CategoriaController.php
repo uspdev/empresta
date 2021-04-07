@@ -99,4 +99,19 @@ class CategoriaController extends Controller
         $categoria->delete();
         return redirect('/categorias');
     }
+
+    public function teste()
+    {
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        header('Content-Type: image/png');
+
+        $barcode = base64_encode($generator->getBarcode('123',$generator::TYPE_CODE_128));
+
+        #
+       # echo base64_decode($barcode);
+
+       return view('teste', [
+           'barcode' => $barcode
+       ]);
+    }
 }

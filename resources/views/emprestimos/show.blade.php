@@ -9,6 +9,7 @@
                     <a href="/emprestimos/create" class="btn btn-success">Novo Empréstimo</a><br><br>
                 </div>
             </div>
+
             @if($emprestimo->data_devolucao == null)
                 <div class="row float-right">
                     <div class="col-auto">
@@ -22,6 +23,11 @@
             @endif
         </div>
     </div>
+
+<div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
+
+
+
     <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
 
     <table class="table table-striped">

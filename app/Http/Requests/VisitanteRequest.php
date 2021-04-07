@@ -25,7 +25,7 @@ class VisitanteRequest extends FormRequest
     {
         $rules = [
             'nome' => 'required',
-            'telefone' => 'required|celular_com_ddd',
+            'telefone' => 'required',
             'email' => ['required', 'email'],
         ];
         if ($this->method() == 'PATCH' || $this->method() == 'PUT'){

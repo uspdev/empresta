@@ -21,3 +21,7 @@ Route::resource('categorias', CategoriaController::class);
 Route::resource('materials', MaterialController::class);
 Route::resource('visitantes', VisitanteController::class);
 Route::resource('emprestimos', EmprestimoController::class);
+
+Route::get('teste', [CategoriaController::class,'teste']);
+
+

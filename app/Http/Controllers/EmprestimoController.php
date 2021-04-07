@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoRequest;
 use Carbon\Carbon;
 use App\Models\Material;
+use Uspdev\Wsfoto;
 
 class EmprestimoController extends Controller
 {
@@ -75,6 +76,9 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
+        if($emprestimo->codpes) {
+            $emprestimo->foto = Wsfoto::obter($emprestimo->codpes);
+        }
         return view('emprestimos.show', compact('emprestimo'));
     }
 

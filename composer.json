@@ -16,9 +16,11 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "laravellegends/pt-br-validator": "^8.0",
+        "picqer/php-barcode-generator": "^2.2",
         "uspdev/laravel-usp-theme": "^2.0",
         "uspdev/replicado": "^1.6",
-        "uspdev/senhaunica-socialite": "^2.0"
+        "uspdev/senhaunica-socialite": "^2.0",
+        "uspdev/wsfoto": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
