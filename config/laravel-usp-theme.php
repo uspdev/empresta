@@ -47,8 +47,16 @@ $submenu1 = [
 
 $submenu2 = [
     [
-        'text' => '<i class="fas fa-handshake"></i> Novo Empréstimo',
-        'url' => config('app.url') . '/emprestimos/create',
+        'text' => '<i class="fas fa-handshake"></i> Devolução',
+        'url' => config('app.url') . '/emprestimos/devolucao',
+    ],
+    [
+        'text' => '<i class="fas fa-handshake"></i> Empréstimo USP',
+        'url' => config('app.url') . '/emprestimos/usp',
+    ],
+    [
+        'text' => '<i class="fas fa-handshake"></i> Empréstimo Visitante',
+        'url' => config('app.url') . '/emprestimos/visitante',
     ],
     [
         'text' => '<i class="fas fa-stream"></i> Itens Emprestados',

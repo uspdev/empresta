@@ -3,8 +3,6 @@
 @section('content')
 @include('flash')
 @inject('pessoa','Uspdev\Replicado\Pessoa')
-    <a href="/emprestimos/create" class="btn btn-success">Novo Empréstimo</a>
-    <br><br>
     <div class="card">
         <div class="card-body">
             <form method="GET" action="/emprestimos">

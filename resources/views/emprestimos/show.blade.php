@@ -4,12 +4,6 @@
 @inject('pessoa','Uspdev\Replicado\Pessoa')
     <div class="row">
         <div class="col-sm">
-            <div class="row float-left">
-                <div class="col-auto">
-                    <a href="/emprestimos/create" class="btn btn-success">Novo Empréstimo</a><br><br>
-                </div>
-            </div>
-
             @if($emprestimo->data_devolucao == null)
                 <div class="row float-right">
                     <div class="col-auto">
