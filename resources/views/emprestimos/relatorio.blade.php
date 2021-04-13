@@ -51,7 +51,7 @@
                 <td>{{ $emprestimo->data_devolucao ? Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y') : '' }}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->codpes }}</td>    
-                    <td>{{ $pessoa::dump($emprestimo->codpes)['nompes'] }}</td>    
+                    <td>{{ $pessoa::cracha($emprestimo->codpes)['nompescra'] }}</td>    
                     <td>{{ $pessoa::emailusp($emprestimo->codpes) }}</td>    
                     <td> @foreach($pessoa::telefones($emprestimo->codpes) as $telefone) {{ $telefone }} @endforeach</td>    
                 @else

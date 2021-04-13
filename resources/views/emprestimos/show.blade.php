@@ -18,11 +18,11 @@
         </div>
     </div>
 
-<div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
 
 
 
     <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
+    <div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
 
     <table class="table table-striped">
         <tbody>
@@ -30,7 +30,7 @@
                 <th>Para</th>
                 <td>
                     @if($emprestimo->visitante_id == null)
-                        {{ $emprestimo->codpes }} - {{ $pessoa::dump($emprestimo->codpes)['nompes'] }} - {{ $pessoa::emailusp($emprestimo->codpes) }}        
+                        {{ $emprestimo->codpes }} - {{ $pessoa::cracha($emprestimo->codpes)['nompescra'] }} - {{ $pessoa::emailusp($emprestimo->codpes) }}        
                     @else
                         {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}    
                     @endif
