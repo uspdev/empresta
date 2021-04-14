@@ -22,7 +22,9 @@ class VisitanteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome' => $this->faker->name,
+            'telefone' => $this->faker->phoneNumber,
+            'email' => $this->faker->unique()->safeEmail,
         ];
     }
 }

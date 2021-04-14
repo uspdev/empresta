@@ -8,9 +8,14 @@ use App\Http\Requests\EmprestimoRequest;
 use Carbon\Carbon;
 use App\Models\Material;
 use Uspdev\Wsfoto;
+use Uspdev\Replicado\Pessoa;
 
 class EmprestimoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:balcão');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +42,26 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
         return view('emprestimos.create')->with([
             'emprestimo' => New Emprestimo,
         ]);
+    }*/
+
+    public function usp(){
+        return view('emprestimos.usp')->with([
+            'emprestimo' => New Emprestimo,
+        ]);    }
+
+    public function visitante(){
+        return view('emprestimos.visitante')->with([
+            'emprestimo' => New Emprestimo,
+        ]);
+    }
+
+    public function devolucao(){
+        return view('emprestimos.devolucao');
     }
 
     /**
@@ -53,6 +73,10 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $validated = $request->validated();
+        if($validated['username'] != null and Pessoa::dump($validated['username']) == null){
+            $request->session()->flash('alert-danger', 'Usuário não existe!');
+            return redirect('/emprestimos/usp'); 
+        }
         $check = Material::where('codigo', $validated['material_id'])->first();
         $check2 = Emprestimo::where('material_id', $check->id)->where('data_devolucao', null)->first();
         if($check->ativo == 1 and $check2 == null){
@@ -63,10 +87,11 @@ class EmprestimoController extends Controller
         }
         else{
             $request->session()->flash('alert-danger', 'Item ainda não devolvido!');
-            return redirect('/emprestimos/create');
+            return redirect('/emprestimos');
         }
         return redirect("/emprestimos/$emprestimo->id");
     }
+
 
     /**
      * Display the specified resource.
@@ -76,8 +101,8 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        if($emprestimo->codpes) {
-            $emprestimo->foto = Wsfoto::obter($emprestimo->codpes);
+        if($emprestimo->username) {
+            $emprestimo->foto = Wsfoto::obter($emprestimo->username);
         }
         return view('emprestimos.show', compact('emprestimo'));
     }
@@ -100,11 +125,34 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emprestimo $emprestimo)
+    /*public function update(Request $request, Emprestimo $emprestimo)
     {
         $emprestimo->data_devolucao = Carbon::now();
         $emprestimo->save();
         return redirect('/emprestimos');
+    }*/
+
+    public function devolver(Request $request){
+        $request->validate([
+            'material_id' => 'required',
+        ]);
+        $material = Material::where('codigo', $request['material_id'])->first();
+        if($material != null){
+            $emprestimo = Emprestimo::where('material_id', $material->id)->where('data_devolucao', null)->first();
+            if($emprestimo != null){
+                $emprestimo->data_devolucao = Carbon::now();
+                $emprestimo->save();
+                $request->session()->flash('alert-success', 'Item devolvido!');
+            }
+            else{
+                $request->session()->flash('alert-danger', 'Empréstimo não localizado! Verifique se o código do material informado está emprestado atualmente!');
+            }
+        }
+        else{
+            $request->session()->flash('alert-danger', 'Item não encontrado! Verifique o código do material!');
+        }
+        return redirect('/emprestimos/devolucao');
+
     }
 
     /**

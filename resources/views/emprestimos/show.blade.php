@@ -4,12 +4,6 @@
 @inject('pessoa','Uspdev\Replicado\Pessoa')
     <div class="row">
         <div class="col-sm">
-            <div class="row float-left">
-                <div class="col-auto">
-                    <a href="/emprestimos/create" class="btn btn-success">Novo Empréstimo</a><br><br>
-                </div>
-            </div>
-
             @if($emprestimo->data_devolucao == null)
                 <div class="row float-right">
                     <div class="col-auto">
@@ -24,11 +18,11 @@
         </div>
     </div>
 
-<div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
 
 
 
     <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
+    <div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
 
     <table class="table table-striped">
         <tbody>
@@ -36,7 +30,7 @@
                 <th>Para</th>
                 <td>
                     @if($emprestimo->visitante_id == null)
-                        {{ $emprestimo->codpes }} - {{ $pessoa::dump($emprestimo->codpes)['nompes'] }} - {{ $pessoa::emailusp($emprestimo->codpes) }}        
+                        {{ $emprestimo->username }} - {{ $pessoa::cracha($emprestimo->username)['nompescra'] }} - {{ $pessoa::emailusp($emprestimo->username) }}        
                     @else
                         {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}    
                     @endif
@@ -44,12 +38,12 @@
             </tr>
             <tr>
                 <th>Data do Empréstimo</th>
-                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i:s') }}</td>
             </tr>
             @if($emprestimo->data_devolucao != null)
                 <tr>
                     <th>Data da Devolução</th>
-                    <td>{{ Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y') }}</td>
+                    <td>{{ Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y H:i:s') }}</td>
                 </tr>
             @endif
             <tr>

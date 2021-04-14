@@ -8,6 +8,10 @@ use App\Http\Requests\VisitanteRequest;
 
 class VisitanteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:balcão');
+    }
     /**
      * Display a listing of the resource.
      *

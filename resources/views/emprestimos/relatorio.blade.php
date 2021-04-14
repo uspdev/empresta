@@ -3,8 +3,6 @@
 @section('content')
 @include('flash')
 @inject('pessoa','Uspdev\Replicado\Pessoa')
-    <a href="/emprestimos/create" class="btn btn-success">Novo Empréstimo</a>
-    <br><br>
     <div class="card">
         <div class="card-body">
             <form method="GET" action="/emprestimos/relatorio">
@@ -52,10 +50,10 @@
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
                 <td>{{ $emprestimo->data_devolucao ? Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y') : '' }}</td>
                 @if($emprestimo->visitante_id == null)
-                    <td>{{ $emprestimo->codpes }}</td>    
-                    <td>{{ $pessoa::dump($emprestimo->codpes)['nompes'] }}</td>    
-                    <td>{{ $pessoa::emailusp($emprestimo->codpes) }}</td>    
-                    <td> @foreach($pessoa::telefones($emprestimo->codpes) as $telefone) {{ $telefone }} @endforeach</td>    
+                    <td>{{ $emprestimo->username }}</td>    
+                    <td>{{ $pessoa::cracha($emprestimo->username)['nompescra'] }}</td>    
+                    <td>{{ $pessoa::emailusp($emprestimo->username) }}</td>    
+                    <td> @foreach($pessoa::telefones($emprestimo->username) as $telefone) {{ $telefone }} @endforeach</td>    
                 @else
                     <td>&nbsp;</td>    
                     <td>{{ $emprestimo->visitante->nome }}</td>
