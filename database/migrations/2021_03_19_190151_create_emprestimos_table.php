@@ -18,7 +18,7 @@ class CreateEmprestimosTable extends Migration
             $table->timestamps();
             $table->date('data_emprestimo');
             $table->date('data_devolucao')->nullable();
-            $table->string('codpes')->nullable();
+            $table->string('username')->nullable();
             $table->foreignId('visitante_id')->nullable()->constrained('visitantes');
             $table->foreignId('material_id')->nullable()->constrained('materials');
             $table->foreignId('created_by_id')->nullable()->constrained('users');

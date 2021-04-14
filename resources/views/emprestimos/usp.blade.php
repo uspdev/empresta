@@ -13,8 +13,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm form-group">
-                        <label for="codpes"><b>Número USP</b></label> 
-                        <input type="text" class="form-control" name="codpes" value="{{ old('codpes', $emprestimo->codpes) }}">        
+                        <label for="username"><b>Número USP</b></label> 
+                        <input type="text" class="form-control" name="username" value="{{ old('username', $emprestimo->username) }}">        
                     </div>
                     <input type="text" class="form-control" name="visitante_id" hidden value="">   
                 </div>

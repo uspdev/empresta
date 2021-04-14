@@ -17,23 +17,68 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     protected $redirectTo = '/';
 
+    public function index(){
+        return view('welcome');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
+
     public function redirectToProvider()
     {
         return Socialite::driver('senhaunica')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        //dd(Auth::attempt(['username' => $request->username, 'password' => $request->password]));
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('home');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+    public function handleProviderCallback(Request $request)
     {
         $userSenhaUnica = Socialite::driver('senhaunica')->user();
-        $user = User::where('codpes',$userSenhaUnica->codpes)->first();
-
+        $user = User::where('username',$userSenhaUnica->codpes)->first();
         if (is_null($user)) $user = new User;
 
+        // precisamos saber se o usuário é autorizado
+        $admins = explode(',', trim(config('empresta.admins')));
+        if ($admins) {
+            $login = false;
+            foreach ($admins as $admin) {
+                if($userSenhaUnica->codpes == $admin) {
+                    $login = true;
+                }
+            }
+        }
+
+        if (!$login) {
+            $request->session()->flash('alert-danger', 'Usuário sem acesso ao sistema.');
+            return redirect('/');
+        }
+
         // bind do dados retornados
-        $user->codpes = $userSenhaUnica->codpes;
+        $user->username = $userSenhaUnica->codpes;
         $user->email = $userSenhaUnica->email;
         $user->name = $userSenhaUnica->nompes;
         $user->save();
+
         Auth::login($user, true);
         return redirect('/');
     }

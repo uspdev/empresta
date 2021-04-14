@@ -69,7 +69,7 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $validated = $request->validated();
-        if($validated['codpes'] != null and Pessoa::dump($validated['codpes']) == null){
+        if($validated['username'] != null and Pessoa::dump($validated['username']) == null){
             $request->session()->flash('alert-danger', 'Usuário não existe!');
             return redirect('/emprestimos/usp'); 
         }
@@ -97,8 +97,8 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        if($emprestimo->codpes) {
-            $emprestimo->foto = Wsfoto::obter($emprestimo->codpes);
+        if($emprestimo->username) {
+            $emprestimo->foto = Wsfoto::obter($emprestimo->username);
         }
         return view('emprestimos.show', compact('emprestimo'));
     }

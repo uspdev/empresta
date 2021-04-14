@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" name="material_id" value="{{ old('material_id', $emprestimo->material_id) }}">   
                 </div>
                 <div class="row">
-                    <input type="text" class="form-control" name="codpes" hidden value="">        
+                    <input type="text" class="form-control" name="username" hidden value="">        
                     <div class="col-sm form-group">
                         <label for="visitante_id"><b>Visitante</b></label> 
                         <select class="form-control" name="visitante_id">

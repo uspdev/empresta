@@ -48,10 +48,10 @@
                 <td>{{ $emprestimo->material->descricao }}</td>
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
                 @if($emprestimo->visitante_id == null)
-                    <td>{{ $emprestimo->codpes }}</td>    
-                    <td>{{ $pessoa::cracha($emprestimo->codpes)['nompescra'] }}</td>    
-                    <td>{{ $pessoa::emailusp($emprestimo->codpes) }}</td>    
-                    <td> @foreach($pessoa::telefones($emprestimo->codpes) as $telefone) {{ $telefone }} @endforeach</td>    
+                    <td>{{ $emprestimo->username }}</td>    
+                    <td>{{ $pessoa::cracha($emprestimo->username)['nompescra'] }}</td>    
+                    <td>{{ $pessoa::emailusp($emprestimo->username) }}</td>    
+                    <td> @foreach($pessoa::telefones($emprestimo->username) as $telefone) {{ $telefone }} @endforeach</td>    
                 @else
                     <td>&nbsp;</td>    
                     <td>{{ $emprestimo->visitante->nome }}</td>

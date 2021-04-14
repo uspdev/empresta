@@ -30,7 +30,7 @@
                 <th>Para</th>
                 <td>
                     @if($emprestimo->visitante_id == null)
-                        {{ $emprestimo->codpes }} - {{ $pessoa::cracha($emprestimo->codpes)['nompescra'] }} - {{ $pessoa::emailusp($emprestimo->codpes) }}        
+                        {{ $emprestimo->username }} - {{ $pessoa::cracha($emprestimo->username)['nompescra'] }} - {{ $pessoa::emailusp($emprestimo->username) }}        
                     @else
                         {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}    
                     @endif

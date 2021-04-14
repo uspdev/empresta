@@ -24,8 +24,8 @@ class EmprestimoRequest extends FormRequest
     public function rules()
     {
         return [
-            'codpes' => ['integer','required_without:visitante_id','nullable'],
-            'visitante_id' => ['integer','required_without:codpes','nullable'],
+            'username' => ['integer','required_without:visitante_id','nullable'],
+            'visitante_id' => ['integer','required_without:username','nullable'],
             'material_id' => 'integer|required',
         ];
     }

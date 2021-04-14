@@ -43,6 +43,21 @@ $submenu1 = [
         'text' => '<i class="fas fa-list-ul"></i> Listar Visitantes',
         'url' => config('app.url') . '/visitantes',
     ],
+    [
+        'type' => 'divider',
+    ],
+    [
+        'type' => 'header',
+        'text' => '<i class="fas fa-eye"></i> Usuários',
+    ],
+    [
+        'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Usuário',
+        'url' => config('app.url') . '/users/create',
+    ],
+    [
+        'text' => '<i class="fas fa-list-ul"></i> Listar Usuário',
+        'url' => config('app.url') . '/users',
+    ],
 ];
 
 $submenu2 = [
