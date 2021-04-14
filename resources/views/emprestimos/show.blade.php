@@ -38,12 +38,12 @@
             </tr>
             <tr>
                 <th>Data do Empréstimo</th>
-                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i:s') }}</td>
             </tr>
             @if($emprestimo->data_devolucao != null)
                 <tr>
                     <th>Data da Devolução</th>
-                    <td>{{ Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y') }}</td>
+                    <td>{{ Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y H:i:s') }}</td>
                 </tr>
             @endif
             <tr>

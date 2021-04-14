@@ -16,8 +16,8 @@ class CreateEmprestimosTable extends Migration
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('data_emprestimo');
-            $table->date('data_devolucao')->nullable();
+            $table->dateTime('data_emprestimo');
+            $table->dateTime('data_devolucao')->nullable();
             $table->string('username')->nullable();
             $table->foreignId('visitante_id')->nullable()->constrained('visitantes');
             $table->foreignId('material_id')->nullable()->constrained('materials');

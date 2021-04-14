@@ -22,6 +22,11 @@ class Emprestimo extends Model
         return $this->belongsTo(Visitante::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function visitantesOptions(){
         return Visitante::all();
     }
