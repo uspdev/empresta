@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('can:admin');
-    }*/
+    }
 
     /**
      * Display a listing of the resource.
@@ -55,7 +56,8 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         $validated['remember_token'] = bcrypt($validated['password']);
-        $validated['password'] = null;
+        $validated['password'] = Hash::make($validated['password']);
+        $validated['tipo'] = 'Balcão';
         $user = User::create($validated);
         return redirect("/users/$user->id");
     }
@@ -93,7 +95,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         $validated['remember_token'] = bcrypt($validated['password']);
-        $validated['password'] = null;
+        $validated['password'] = Hash::make($validated['password']);
         $user->update($validated);
         return redirect("/users/$user->id");
     }

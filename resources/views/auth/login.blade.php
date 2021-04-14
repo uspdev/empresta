@@ -13,7 +13,7 @@
                         @csrf
 
                         <sdiv class="form-group row">
-                            <label for="username" class="col-sm-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
@@ -44,12 +44,9 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
-                                </button>                                
-                                ou           
-                                <a class="btn btn-link" href="{{ route('loginusp') }}">
-                                    Faça login usando senha única USP!
-                                </a>
-                               
+                                </button>                                           
+                                ou<a class="btn btn-link" href="{{ route('loginusp') }}">Faça login usando senha única USP!</a>
+                                <br><br>
                             </div>
                         </div>
                     </form>

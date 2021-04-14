@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'username' => ['required'],
             'password' => 'required',
-            'tipo' => 'required',
+            'tipo' => '',
         ];
         if ($this->method() == 'PATCH' || $this->method() == 'PUT'){
             array_push($rules['username'], 'unique:users,username,'.$this->user->id);

@@ -12,6 +12,10 @@ use Uspdev\Replicado\Pessoa;
 
 class EmprestimoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:balcão');
+    }
     /**
      * Display a listing of the resource.
      *

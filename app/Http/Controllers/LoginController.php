@@ -36,21 +36,6 @@ class LoginController extends Controller
         return Socialite::driver('senhaunica')->redirect();
     }
 
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('username', 'password');
-        //dd(Auth::attempt(['username' => $request->username, 'password' => $request->password]));
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('home');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    }
-
     public function handleProviderCallback(Request $request)
     {
         $userSenhaUnica = Socialite::driver('senhaunica')->user();
@@ -77,6 +62,7 @@ class LoginController extends Controller
         $user->username = $userSenhaUnica->codpes;
         $user->email = $userSenhaUnica->email;
         $user->name = $userSenhaUnica->nompes;
+        $user->tipo = 'Administrador';
         $user->save();
 
         Auth::login($user, true);

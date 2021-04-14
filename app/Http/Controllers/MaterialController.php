@@ -8,6 +8,10 @@ use App\Http\Requests\MaterialRequest;
 
 class MaterialController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
     /**
      * Display a listing of the resource.
      *
