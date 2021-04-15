@@ -60,7 +60,7 @@ $submenu1 = [
     ],
     [
         'type' => 'header',
-        'text' => '<i class="fas fa-eye"></i> Usuários',
+        'text' => '<i class="fas fa-users"></i> Usuários',
         'can' => 'admin'
     ],
     [
@@ -77,7 +77,7 @@ $submenu1 = [
 
 $submenu2 = [
     [
-        'text' => '<i class="fas fa-handshake"></i> Devolução',
+        'text' => '<i class="fas fa-undo"></i> Devolução',
         'url' => config('app.url') . '/emprestimos/devolucao',
         'can' => 'balcao'
     ],
@@ -87,7 +87,7 @@ $submenu2 = [
         'can' => 'balcao'
     ],
     [
-        'text' => '<i class="fas fa-handshake"></i> Empréstimo Visitante',
+        'text' => '<i class="far fa-handshake"></i> Empréstimo Visitante',
         'url' => config('app.url') . '/emprestimos/visitante',
         'can' => 'balcao'
     ],
@@ -102,7 +102,7 @@ $submenu2 = [
         'can' => 'balcao'
     ],
     [
-        'text' => '<i class="fas fa-chart-bar"></i> Código de Barras',
+        'text' => '<i class="fas fa-barcode"></i> Código de Barras',
         'url' => config('app.url') . '/categorias/barcode',
         'can' => 'admin'
     ],

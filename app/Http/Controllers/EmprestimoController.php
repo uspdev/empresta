@@ -50,9 +50,8 @@ class EmprestimoController extends Controller
     }*/
 
     public function usp(){
-        return view('emprestimos.usp')->with([
-            'emprestimo' => New Emprestimo,
-        ]);    }
+        return view('emprestimos.usp');  
+    }
 
     public function visitante(){
         return view('emprestimos.visitante')->with([
@@ -80,7 +79,7 @@ class EmprestimoController extends Controller
         $check = Material::where('codigo', $validated['material_id'])->first();
         $check2 = Emprestimo::where('material_id', $check->id)->where('data_devolucao', null)->first();
         if($check->ativo == 1 and $check2 == null){
-            $validated['data_emprestimo']= Carbon::now()->toDateString();
+            $validated['data_emprestimo']= Carbon::now()->format('Y-m-d H:i:s');
             $validated['created_by_id']= auth()->user()->id;
             $validated['material_id'] = $check->id;
             $emprestimo = Emprestimo::create($validated);
@@ -140,7 +139,7 @@ class EmprestimoController extends Controller
         if($material != null){
             $emprestimo = Emprestimo::where('material_id', $material->id)->where('data_devolucao', null)->first();
             if($emprestimo != null){
-                $emprestimo->data_devolucao = Carbon::now();
+                $emprestimo->data_devolucao = Carbon::now()->format('Y-m-d H:i:s');
                 $emprestimo->save();
                 $request->session()->flash('alert-success', 'Item devolvido!');
             }

@@ -24,11 +24,14 @@ class EmprestimoFactory extends Factory
      */
     public function definition()
     {
+        $visitante = Visitante::factory(1)->create();
+        $material = Material::factory(1)->create();
+        $user = User::factory(1)->create();
         return [
-            'data_emprestimo' => $this->faker->dateTime($max = 'now', $timezone = 'UTC')->format('Y-m-d H:i:s'),
-            'visitante_id' => Visitante::factory(1)->create(),
-            'material_id' => Material::factory(1)->create(),
-            'created_by_id' => User::factory(1)->create(),
+            'data_emprestimo' => $this->faker->dateTime($max = 'now', $timezone = 'UTC'),
+            'visitante_id' => $visitante[0]->id,
+            'material_id' => $material[0]->id,
+            'created_by_id' => $user[0]->id,
         ];
     }
 }

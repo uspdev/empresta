@@ -47,8 +47,8 @@
                 <td>{{ $emprestimo->material->codigo }}</td>
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
-                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
-                <td>{{ $emprestimo->data_devolucao ? Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y') : '' }}</td>
+                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i:s') }}</td>
+                <td>{{ $emprestimo->data_devolucao ? Carbon\Carbon::parse($emprestimo->data_devolucao)->format('d/m/Y H:i:s') : '' }}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
                     <td>{{ $pessoa::cracha($emprestimo->username)['nompescra'] }}</td>    
@@ -62,13 +62,6 @@
                 @endif                
                 <td>
                     <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
-                    @if($emprestimo->data_devolucao == null)
-                        <form method="POST" style="width:42px;" class="float-left col-auto" action="/emprestimos/{{ $emprestimo->id }}">
-                            @csrf 
-                            @method('PATCH')
-                            <button type="submit" class="btn btn-secondary" onclick="return confirm('Você tem certeza que deseja devolver material?')"><i class="fas fa-undo-alt"></i></button>
-                        </form>
-                    @endif
                 </td>
             </tr>
         @endforeach

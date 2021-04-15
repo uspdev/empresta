@@ -60,11 +60,6 @@
                 @endif                
                 <td>
                     <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
-                    <form method="POST" style="width:42px;" class="float-left col-auto" action="/emprestimos/{{ $emprestimo->id }}">
-                        @csrf 
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Você tem certeza que deseja devolver material?')"><i class="fas fa-undo-alt"></i></button>
-                    </form>
                 </td>
             </tr>
         @endforeach

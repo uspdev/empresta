@@ -18,21 +18,22 @@ class EmprestimoSeeder extends Seeder
      */
     public function run()
     {
+
         $emprestimo = [
             'data_emprestimo' => Carbon::now(),
-            'visitante_id' => Visitante::factory(1)->create(),
-            'material_id' => Material::factory(1)->create(),
-            'created_by_id' => User::factory(1)->create(),                
+            'visitante_id' => Visitante::factory(1)->create()[0]->id,
+            'material_id' => Material::factory(1)->create()[0]->id,
+            'created_by_id' => User::factory(1)->create()[0]->id,                
         ];
         Emprestimo::create($emprestimo);
         
-        /*Emprestimo::factory(5)->create()->each(function ($emprestimo) {           
+        Emprestimo::factory(200)->create()->each(function ($emprestimo) {           
             $material = Material::factory(1)->make();
             $visitante = Visitante::factory(1)->make();
             $user = User::factory(1)->make();
-            $emprestimo->material()->save($material);
-            $emprestimo->visitante()->save($visitante);
-            $emprestimo->user()->save($user);
-        });*/
+            $emprestimo->material()->associate($material);
+            $emprestimo->visitante()->associate($visitante);
+            $emprestimo->user()->associate($user);
+        });
     }
 }
