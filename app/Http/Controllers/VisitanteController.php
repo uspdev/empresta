@@ -10,7 +10,7 @@ class VisitanteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:balcão');
+        $this->middleware('can:balcao');
     }
     /**
      * Display a listing of the resource.

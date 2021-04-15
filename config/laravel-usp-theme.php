@@ -42,17 +42,17 @@ $submenu1 = [
     [
         'type' => 'header',
         'text' => '<i class="fas fa-eye"></i> Visitantes',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Visitante',
         'url' => config('app.url') . '/visitantes/create',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Visitantes',
         'url' => config('app.url') . '/visitantes',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'type' => 'divider',
@@ -60,7 +60,7 @@ $submenu1 = [
     ],
     [
         'type' => 'header',
-        'text' => '<i class="fas fa-eye"></i> Usuários',
+        'text' => '<i class="fas fa-users"></i> Usuários',
         'can' => 'admin'
     ],
     [
@@ -77,34 +77,34 @@ $submenu1 = [
 
 $submenu2 = [
     [
-        'text' => '<i class="fas fa-handshake"></i> Devolução',
+        'text' => '<i class="fas fa-undo"></i> Devolução',
         'url' => config('app.url') . '/emprestimos/devolucao',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-handshake"></i> Empréstimo USP',
         'url' => config('app.url') . '/emprestimos/usp',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
-        'text' => '<i class="fas fa-handshake"></i> Empréstimo Visitante',
+        'text' => '<i class="far fa-handshake"></i> Empréstimo Visitante',
         'url' => config('app.url') . '/emprestimos/visitante',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-stream"></i> Itens Emprestados',
         'url' => config('app.url') . '/emprestimos',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-chart-bar"></i> Relatório de Empréstimos',
         'url' => config('app.url') . '/emprestimos/relatorio',
-        'can' => 'balcão'
+        'can' => 'balcao'
     ],
     [
-        'text' => '<i class="fas fa-chart-bar"></i> Código de Barras',
+        'text' => '<i class="fas fa-barcode"></i> Código de Barras',
         'url' => config('app.url') . '/categorias/barcode',
-        'can' => 'balcão'
+        'can' => 'admin'
     ],
 
 ];
@@ -112,12 +112,12 @@ $menu = [
     [
         'text' => '<i class="fas fa-user-cog"></i> Administração',
         'submenu' => $submenu1,
-        'can' => 'balcão',
+        'can' => 'balcao',
     ],
     [
         'text' => '<i class="fas fa-retweet"></i> Empréstimos/Devolução',
         'submenu' => $submenu2,
-        'can' => 'balcão',
+        'can' => 'balcao',
     ],
 ];
 

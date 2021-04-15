@@ -57,7 +57,7 @@ class UserController extends Controller
         $validated = $request->validated();
         $validated['remember_token'] = bcrypt($validated['password']);
         $validated['password'] = Hash::make($validated['password']);
-        $validated['tipo'] = 'Balcão';
+        $validated['tipo'] = 'Balcao';
         $user = User::create($validated);
         return redirect("/users/$user->id");
     }

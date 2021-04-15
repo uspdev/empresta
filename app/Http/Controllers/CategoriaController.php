@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriaRequest;
 use App\Models\Material;
 use PDF;
+use \Picqer\Barcode\BarcodeGeneratorPNG;
 
 class CategoriaController extends Controller
 {
@@ -110,15 +111,15 @@ class CategoriaController extends Controller
     }
 
     public function barcode(){
-        $this->authorize('balcão');
+        $this->authorize('balcao');
         $categorias = Categoria::orderBy('nome', 'asc')->get();
         return view('categorias.barcode')->with('categorias', $categorias);
     }
 
     public function barcodes(Request $request)
     {
-        $this->authorize('balcão');
-        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $this->authorize('balcao');
+        $generator = new BarcodeGeneratorPNG();
         $materiais = Material::orderBy('codigo', 'asc');
         if($request->categoria_id[0] == null){
             $categorias = Categoria::orderBy('nome', 'asc')->get();

@@ -2,24 +2,6 @@
 
 @section('content')
 @inject('pessoa','Uspdev\Replicado\Pessoa')
-    <div class="row">
-        <div class="col-sm">
-            @if($emprestimo->data_devolucao == null)
-                <div class="row float-right">
-                    <div class="col-auto">
-                        <form method="POST" action="/emprestimos/{{ $emprestimo->id }}">
-                            @csrf 
-                            @method('PATCH')
-                            <button type="submit" class="btn btn-secondary" onclick="return confirm('Você tem certeza que deseja devolver material?')"><i class="fas fa-undo-alt"></i> Devolver</button>
-                        </form>
-                    </div>
-                </div>
-            @endif
-        </div>
-    </div>
-
-
-
 
     <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
     <div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>

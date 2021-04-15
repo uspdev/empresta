@@ -29,7 +29,7 @@ class MaterialRequest extends FormRequest
             'ativo' => 'required|integer',
             'codigo' => ['required','integer'],
             'categoria_id' => 'required',
-            'descricao' => 'nullable',
+            'descricao' => 'required',
         ];
         if ($this->method() == 'PATCH' || $this->method() == 'PUT'){
             array_push($rules['codigo'], 'unique:materials,codigo,'.$this->material->id);
