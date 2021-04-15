@@ -14,7 +14,7 @@ class EmprestimoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:balcão');
+        $this->middleware('can:balcao');
     }
     /**
      * Display a listing of the resource.
@@ -75,7 +75,7 @@ class EmprestimoController extends Controller
         $validated = $request->validated();
         if($validated['username'] != null and Pessoa::dump($validated['username']) == null){
             $request->session()->flash('alert-danger', 'Usuário não existe!');
-            return redirect('/emprestimos/usp'); 
+            return redirect()->back();
         }
         $check = Material::where('codigo', $validated['material_id'])->first();
         $check2 = Emprestimo::where('material_id', $check->id)->where('data_devolucao', null)->first();
@@ -87,7 +87,7 @@ class EmprestimoController extends Controller
         }
         else{
             $request->session()->flash('alert-danger', 'Item ainda não devolvido!');
-            return redirect('/emprestimos');
+            return redirect()->back();
         }
         return redirect("/emprestimos/$emprestimo->id");
     }

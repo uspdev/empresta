@@ -110,14 +110,14 @@ class CategoriaController extends Controller
     }
 
     public function barcode(){
-        $this->authorize('balcão');
+        $this->authorize('balcao');
         $categorias = Categoria::orderBy('nome', 'asc')->get();
         return view('categorias.barcode')->with('categorias', $categorias);
     }
 
     public function barcodes(Request $request)
     {
-        $this->authorize('balcão');
+        $this->authorize('balcao');
         $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
         $materiais = Material::orderBy('codigo', 'asc');
         if($request->categoria_id[0] == null){
