@@ -118,7 +118,7 @@ class CategoriaController extends Controller
 
     public function barcodes(Request $request)
     {
-        $this->authorize('balcao');
+        $this->authorize('admin');
         $generator = new BarcodeGeneratorPNG();
         $materiais = Material::orderBy('codigo', 'asc');
         if($request->categoria_id[0] == null){
@@ -157,26 +157,7 @@ class CategoriaController extends Controller
         $tr .= $faltantes;
         $tr .= '</tr>';
         $trs .= $tr;
-
-
-        $pdf = "
-            <html> <head> <style type='text/css'>
-            table {
-              width: 18cm;
-            }
-            td {
-              border: 1px solid black;
-              height: 1.7 cm;
-              text-align: center;
-            }
-            tr {
-            }
-            </style>
-            </head>
-            <body><table> {$trs}</table> </body>
-            </html>";
-
-        $pdf = PDF::loadHtml($pdf)->setPaper('A4', 'portrait');
+        $pdf = PDF::loadView("categorias.pdfs.barcodes", compact('trs'))->setPaper('A4', 'portrait');
         return $pdf->download("barcodes.pdf");
     }
 
