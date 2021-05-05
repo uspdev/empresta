@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <th>Tipo</th>
-                <td>{{ $user->tipo }}</td>
+                <td>@if($user->tipo == 'Administrador') Administrador do Sistema @else Balcão @endif</td>
             </tr>
                    
         </tbody>

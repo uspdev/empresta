@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Material;
 use App\Models\Visitante;
+use App\Models\User;
 
 class Emprestimo extends Model
 {

@@ -31,9 +31,9 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->username, $admins);
         });
 
-        Gate::define('balcão', function ($user) {
+        Gate::define('balcao', function ($user) {
             if(Gate::allows('admin')) return true;
-            $verifica = User::where('username', $user->username)->where('tipo', 'Balcão')->first();
+            $verifica = User::where('username', $user->username)->where('tipo', 'Balcao')->first();
             if($verifica){
                 return true;
             }

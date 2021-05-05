@@ -23,12 +23,14 @@ class MaterialFactory extends Factory
      */
     public function definition()
     {
+        $categoria = Categoria::factory(1)->create();
+        $user = User::factory(1)->create();
         return [
             'ativo' => 1,
-            'codigo' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+            'codigo' => $this->faker->unique()->randomNumber($nbDigits = NULL, $strict = false),
             'descricao' => $this->faker->sentence($nbWords = 2, $variableNbWords = true),
-            'categoria_id' => Categoria::factory(1)->create(),
-            'created_by_id' => User::factory(1)->create(),
+            'categoria_id' => $categoria[0]->id,
+            'created_by_id' => $user[0]->id,
         ];
     }
 }

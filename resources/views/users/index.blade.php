@@ -40,7 +40,7 @@
         @foreach($users as $user)
             <tr>
                 <td><a href="/users/{{$user->id}}">{{ $user->name }}</a></td>
-                <td>{{ $user->tipo }}</td>
+                <td>@if($user->tipo == 'Administrador') Administrador do Sistema @else Balcão @endif</td>
                 <td>
                     <a href="/users/{{$user->id}}/edit" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
                     <form method="POST" style="width:42px;" class="float-left col-auto" action="/users/{{ $user->id }}">

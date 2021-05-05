@@ -9,12 +9,12 @@
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>
-                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id', $emprestimo->material_id) }}">   
+                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id') }}">   
                 </div>
                 <div class="row">
                     <div class="col-sm form-group">
                         <label for="username"><b>Número USP</b></label> 
-                        <input type="text" class="form-control" name="username" value="{{ old('username', $emprestimo->username) }}">        
+                        <input type="text" class="form-control" name="username" value="{{ old('username') }}">        
                     </div>
                     <input type="text" class="form-control" name="visitante_id" hidden value="">   
                 </div>
