@@ -31,3 +31,6 @@ Route::resource('materials', MaterialController::class);
 Route::resource('visitantes', VisitanteController::class);
 Route::resource('emprestimos', EmprestimoController::class);
 Route::resource('users', UserController::class);
+
+# Logs  
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
