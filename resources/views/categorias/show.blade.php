@@ -2,28 +2,25 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-sm">
-            <div class="row float-left">
-                <div class="col-auto">
-                    <a href="/categorias/create" class="btn btn-success">Nova categoria</a><br><br>
-                </div>
+    <div>
+        <div class="row">
+            <div class="col-sm">
+                <a href="/categorias/create" class="btn btn-success">Nova categoria</a><br><br>
             </div>
-            <div class="row float-right">
-                <div class="col-auto">
-                    <a href="/categorias/{{$categoria->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
-                </div>
-                <div class="col-auto">
-                    <form method="POST" action="/categorias/{{ $categoria->id }}">
-                        @csrf 
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i> Apagar</button>
-                    </form>
-                </div>
+            <div class="col-auto float-right">
+                <a href="/categorias/{{$categoria->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
+            </div>
+            <div class="col-auto pull-right">
+                <form method="POST" action="/categorias/{{ $categoria->id }}">
+                    @csrf 
+                    @method('delete')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i> Apagar</button>
+                </form>
             </div>
         </div>
     </div>
-    <h2>{{ $categoria->nome }} </h2>
+    <h2>{{ $categoria->nome }}</h2>
+    <div class="card card-header"><b>Materiais</b></div>
     <table class="table table-striped">
         <thead>
             <tr>

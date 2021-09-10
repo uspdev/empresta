@@ -2,30 +2,26 @@
 
 @section('content')
 @include('flash')
-    <a href="/categorias/create" class="btn btn-success">Nova categoria</a><br>
-    <br>
+    <div class="row" style="margin-bottom:0.5em;">
+        <div class="col-sm">
+            <a href="/categorias/create" class="btn btn-success">Nova categoria</a>
+        </div>
+    </div>
     <div class="card">
+        <div class="card-header"><b>Categorias dos itens de empréstimo</b></div>
         <div class="card-body">
             <form method="GET" action="/categorias">
                 <div class="row form-group">
-                    <div class="col-auto">
-                        <label style="margin-top:0.35em; margin-bottom:0em;"><h5><b>Buscar: </b></h5></label>
-                    </div>
-                </div>
-                
-                <div class="row form-group">
-                    <div class="col-sm form-group" id="busca">
+                    <div class="col-sm" id="busca">
                         <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o nome da categoria">
                     </div>
-                    <div class=" col-auto form-group">
+                    <div class=" col-auto">
                         <button type="submit" class="btn btn-success">Buscar</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <br>
-    <h1><b>Categorias dos itens de empréstimo</b></h1>
     <table class="table table-striped">
         <thead>
             <tr>

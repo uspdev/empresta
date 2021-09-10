@@ -1,30 +1,26 @@
 @extends('laravel-usp-theme::master')
 
 @section('content')
-    <a href="/visitantes/create" class="btn btn-success">Novo Visitante</a>
-    <br><br>
+    <div class="row" style="margin-bottom:0.5em;">
+        <div class="col-sm">
+            <a href="/visitantes/create" class="btn btn-success">Novo Visitante</a>
+        </div>
+    </div>
     <div class="card">
+        <div class="card-header"><b>Visitantes</b></div>
         <div class="card-body">
             <form method="GET" action="/visitantes">
                 <div class="row form-group">
-                    <div class="col-auto">
-                        <label style="margin-top:0.35em; margin-bottom:0em;"><h5><b>Buscar: </b></h5></label>
-                    </div>
-                </div>
-                
-                <div class="row form-group">
-                    <div class="col-sm form-group" id="busca">
+                    <div class="col-sm" id="busca">
                         <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
                     </div>
-                    <div class=" col-auto form-group">
+                    <div class=" col-auto">
                         <button type="submit" class="btn btn-success">Buscar</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <br>
-    <h1>Visitantes</h1>
     <table class="table table-striped">
         <thead>
             <tr>
