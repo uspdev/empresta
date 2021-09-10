@@ -22,8 +22,7 @@
             </div>
         </div>
     </div>
-    <h2>Visitante</h2>
-
+    <h5><b>Visitante</b></h5>
     <table class="table table-striped">
         <tbody>
             <tr>

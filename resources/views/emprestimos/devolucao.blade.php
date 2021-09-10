@@ -3,7 +3,7 @@
 @section('content')
 @include('flash')
     <div class="card">
-        <div class="card-header"><h4><b>Devolução</b></h4></div>
+        <div class="card-header"><b>Devolução</b></div>
         <div class="card-body">
             <form action="/emprestimos/devolver" method="POST">
                 @csrf

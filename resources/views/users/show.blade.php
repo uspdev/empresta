@@ -2,28 +2,28 @@
 
 @section('content')
 @inject('pessoa','Uspdev\Replicado\Pessoa')
-    <div class="row">
-        <div class="col-sm">
-            <div class="row float-left">
-                <div class="col-auto">
-                    <a href="/users/create" class="btn btn-success">Novo Usuário</a><br><br>
-                </div>
+    <div>
+        <div class="row">
+            <div class="col-sm">
+                <a href="/users/create" class="btn btn-success">Novo Usuário</a><br><br>
             </div>
-            <div class="row float-right">
-                <div class="col-auto">
-                    <a href="/users/{{$user->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
-                </div>
-                <div class="col-auto">
-                    <form method="POST" action="/users/{{ $user->id }}">
-                        @csrf 
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i> Apagar</button>
-                    </form>
+            <div class="col-sm">
+                <div class="row float-right">
+                    <div class="col-auto">
+                        <a href="/users/{{$user->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
+                    </div>
+                    <div class="col-auto">
+                        <form method="POST" action="/users/{{ $user->id }}">
+                            @csrf 
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i> Apagar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <h2>Usuário</h2>
+    <h5><b>Dados do Usuário</b></h5>
     <table class="table table-striped">
         <tbody>
             <tr>
