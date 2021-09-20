@@ -12,7 +12,7 @@
                 <th>Para</th>
                 <td>
                     @if($emprestimo->visitante_id == null)
-                        {{ $emprestimo->username }} - {{ $pessoa::cracha($emprestimo->username)['nompescra'] }} - {{ $pessoa::emailusp($emprestimo->username) }}        
+                        {{ $emprestimo->username }} - {{$pessoa::dump($emprestimo->username)['nompes']}}
                     @else
                         {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}    
                     @endif
