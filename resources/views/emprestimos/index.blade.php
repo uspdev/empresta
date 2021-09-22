@@ -41,7 +41,7 @@
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
-                    <td>{{ $pessoa::cracha($emprestimo->username)['nompescra'] }}</td>    
+                    <td>{{$pessoa::dump($emprestimo->username)['nompes']}}</td>    
                     <td>{{ $pessoa::emailusp($emprestimo->username) }}</td>    
                     <td> @foreach($pessoa::telefones($emprestimo->username) as $telefone) {{ $telefone }} @endforeach</td>    
                 @else
