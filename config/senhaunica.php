@@ -2,7 +2,7 @@
 
 return [
     // para rotas internas
-    'routes' => false, // usa rotas e controller internos
+    'routes' => true, // usa rotas e controller internos
 
     // coloque um prefixo em caso de colisão de rotas
     // para todas as rotas internas da biblioteca (login, loginas, callback, logout e users).
@@ -18,7 +18,7 @@ return [
 
     // usa as permissoes internas, padrão para v4.
     // Se false, não usará permission ao efetuar login
-    'permission' => false,
+    'permission' => true,
 
     // permite login somente de usuários já cadastrados na base local ou autorizados nos admins, gerentes ou users
     'onlyLocalUsers' => false,

@@ -149,7 +149,7 @@ return [
     'app_url' => config('app.url'),
     'logout_method' => 'POST',
     'logout_url' => config('app.url') . '/logout',
-    'login_url' => config('app.url') . '/login',
+    'login_url' => config('app.url') . '/show_login_intern',
     'menu' => $menu,
     'right_menu' => $right_menu,
 ];
