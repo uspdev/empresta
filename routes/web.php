@@ -14,7 +14,6 @@ Route::get('/home', function () {
 });
 Route::get('login_intern', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
 Route::post('login_intern', [LoginInternController::class, 'login'])->name('login_intern');
-#Route::post('logout_intern',[LoginController::class, 'logout_intern'])->name('logout_intern');
 
 Route::get('emprestimos/relatorio', [EmprestimoController::class,'relatorio'])->name('emprestimos.relatorio');
 Route::get('emprestimos/usp', [EmprestimoController::class,'usp'])->name('emprestimos.usp');
