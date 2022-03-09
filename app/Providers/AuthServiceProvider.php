@@ -26,11 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('admin', function ($user) {
-            $admins = explode(',', trim(env('SENHAUNICA_ADMINS')));
-            return in_array($user->username, $admins);
-        });
-
         Gate::define('balcao', function ($user) {
             if(Gate::allows('admin')) return true;
             $verifica = User::where('username', $user->username)->where('tipo', 'Balcao')->first();

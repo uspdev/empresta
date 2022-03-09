@@ -1,22 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginInternController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', [LoginController::class, 'index']);
+Route::get('/', [LoginInternController::class, 'index']);
 Route::get('/home', function () {
     return view('home');
 });
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::get('loginusp',[LoginController::class, 'redirectToProvider'])->name('loginusp');
-Route::get('callback', [LoginController::class, 'handleProviderCallback']);
-Route::post('logout',[LoginController::class, 'logout'])->name('logout');
+Route::get('login_intern', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
+Route::post('login_intern', [LoginInternController::class, 'login'])->name('login_intern');
 
 Route::get('emprestimos/relatorio', [EmprestimoController::class,'relatorio'])->name('emprestimos.relatorio');
 Route::get('emprestimos/usp', [EmprestimoController::class,'usp'])->name('emprestimos.usp');

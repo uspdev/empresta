@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                    <form method="POST" action="{{ route('login_intern') }}" aria-label="{{ __('Login') }}">
                         @csrf
 
                         <sdiv class="form-group row">
@@ -45,7 +45,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>                                           
-                                ou<a class="btn btn-link" href="{{ route('loginusp') }}">Faça login usando senha única USP!</a>
+                                ou<a class="btn btn-link" href="{{ route('login') }}">Faça login usando senha única USP!</a>
                                 <br><br>
                             </div>
                         </div>
