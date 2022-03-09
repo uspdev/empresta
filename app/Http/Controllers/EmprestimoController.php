@@ -77,17 +77,29 @@ class EmprestimoController extends Controller
             return redirect()->back();
         }
         $check = Material::where('codigo', $validated['material_id'])->first();
-        $check2 = Emprestimo::where('material_id', $check->id)->where('data_devolucao', null)->first();
-        if($check->ativo == 1 and $check2 == null){
-            $validated['data_emprestimo']= Carbon::now()->format('Y-m-d H:i:s');
-            $validated['created_by_id']= auth()->user()->id;
-            $validated['material_id'] = $check->id;
-            $emprestimo = Emprestimo::create($validated);
-        }
-        else{
-            $request->session()->flash('alert-danger', 'Item ainda não devolvido!');
+        if($check){
+            if($check->ativo != 1){
+                $request->session()->flash('alert-danger', 'Item não está ativo para empréstimos');
+                return redirect()->back();
+            }
+            $check2 = Emprestimo::where('material_id', $check->id)->where('data_devolucao', null)->first();
+            
+            if($check2 == null){
+                $validated['data_emprestimo']= Carbon::now()->format('Y-m-d H:i:s');
+                $validated['created_by_id']= auth()->user()->id;
+                $validated['material_id'] = $check->id;
+                $emprestimo = Emprestimo::create($validated);
+            }
+            else{
+                $request->session()->flash('alert-danger', 'Item ainda não devolvido!');
+                return redirect()->back();
+            }
+
+        } else {
+            $request->session()->flash('alert-danger', 'Item não encontrado');
             return redirect()->back();
         }
+        
         return redirect("/emprestimos/$emprestimo->id");
     }
 

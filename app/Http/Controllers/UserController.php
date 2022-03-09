@@ -106,9 +106,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
-        $user->delete();
+        $request->session()->flash('alert-danger', 'Não é permitido deletar usuário. Troque a senha para desabilitar o acesso');
+
+        #$user->delete();
         return redirect('/users');
     }
 }
