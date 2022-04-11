@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Material;
 use Uspdev\Wsfoto;
 use Uspdev\Replicado\Pessoa;
+use App\Utils\ReplicadoUtils;
 
 class EmprestimoController extends Controller
 {
@@ -72,7 +73,8 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $validated = $request->validated();
-        if($validated['username'] != null and Pessoa::dump($validated['username']) == null){
+
+        if($validated['username'] != null and ReplicadoUtils::pessoaUSP($validated['username']) == null){
             $request->session()->flash('alert-danger', 'Usuário não existe!');
             return redirect()->back();
         }

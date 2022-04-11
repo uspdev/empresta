@@ -2,7 +2,8 @@
 
 @section('content')
 @include('flash')
-@inject('pessoa','Uspdev\Replicado\Pessoa')
+@inject('pessoa','App\Utils\ReplicadoUtils')
+
     <div class="card">
         <div class="card-header"><b>Itens emprestados</b></div>
         <div class="card-body">
@@ -26,9 +27,7 @@
                 <th>Descrição</th>
                 <th>Data do empréstimo</th>
                 <th>Nº USP</th>
-                <th>Nome</td>
-                <th>E-mail</th>
-                <th>Telefone</th>
+                <th>Pessoa</td>
                 <th>Ver</th>
             </tr>
         </thead>
@@ -41,14 +40,18 @@
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
-                    <td>{{$pessoa::dump($emprestimo->username)['nompes']}}</td>    
-                    <td>{{ $pessoa::emailusp($emprestimo->username) }}</td>    
-                    <td> @foreach($pessoa::telefones($emprestimo->username) as $telefone) {{ $telefone }} @endforeach</td>    
+                    <td>                        
+                        @foreach($pessoa::pessoaUSP($emprestimo->username) as $data)
+                            <br>{{ $data }}
+                        @endforeach
+                        <br><b>Vacinação covid-19</b>: {{ \Uspdev\Replicado\Pessoa::obterSituacaoVacinaCovid19($emprestimo->username) }}
+                    </td>
+                    
                 @else
                     <td>&nbsp;</td>    
-                    <td>{{ $emprestimo->visitante->nome }}</td>
-                    <td>{{ $emprestimo->visitante->email }}</td>    
-                    <td>{{ $emprestimo->visitante->telefone }}</td>    
+                    <td>{{ $emprestimo->visitante->nome }} <br>
+                        {{ $emprestimo->visitante->email }} <br>    
+                        {{ $emprestimo->visitante->telefone }}</td>    
                 @endif                
                 <td>
                     <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>

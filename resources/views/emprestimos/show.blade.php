@@ -1,10 +1,13 @@
 @extends('laravel-usp-theme::master')
 
 @section('content')
-@inject('pessoa','Uspdev\Replicado\Pessoa')
+@inject('pessoa','App\Utils\ReplicadoUtils')
 
     <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
-    <div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
+
+    @if($emprestimo->visitante_id == null)
+        <div class="column"><img src="data:image/jpeg;base64,{{ $emprestimo->foto }}"></div>
+    @endif
 
     <table class="table table-striped">
         <tbody>
@@ -12,7 +15,11 @@
                 <th>Para</th>
                 <td>
                     @if($emprestimo->visitante_id == null)
-                        {{ $emprestimo->username }} - {{$pessoa::dump($emprestimo->username)['nompes']}}
+                        {{ $emprestimo->username }}
+                        @foreach($pessoa::pessoaUSP($emprestimo->username) as $data)
+                            <br>{{ $data }}
+                        @endforeach
+                        <br><b>Vacinação covid-19</b>: {{ \Uspdev\Replicado\Pessoa::obterSituacaoVacinaCovid19($emprestimo->username) }}
                     @else
                         {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}    
                     @endif

@@ -29,4 +29,12 @@ class EmprestimoRequest extends FormRequest
             'material_id' => 'integer|required',
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'username' => (int)  $this->username,
+            'material_id' => (int)  $this->material_id,
+        ]);
+    }
 }

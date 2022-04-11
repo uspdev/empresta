@@ -29,6 +29,7 @@ class Emprestimo extends Model
     }
 
     public static function visitantesOptions(){
-        return Visitante::all();
+        return Visitante::orderBy('nome')->get(); 
+
     }
 }
