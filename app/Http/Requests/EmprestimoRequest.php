@@ -33,8 +33,8 @@ class EmprestimoRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'username' => (int)  $this->username,
-            'material_id' => (int)  $this->material_id,
+            'username' => (int) $this->username,
+            'material_id' => (int) $this->material_id,
         ]);
     }
 }

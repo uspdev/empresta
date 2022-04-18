@@ -23,7 +23,7 @@ class ReplicadoUtils
                 return $pessoa;
             }
             else {
-                return ['Dados da pessoa não encontrados, pois pessoa não ativou cartão USP'];
+                return [false];
             }
         }
     }
