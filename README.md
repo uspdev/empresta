@@ -1,6 +1,6 @@
 ## Conceito
 
-Empréstimos de materiais da FFLCH.
+Empréstimos de materiais.
 
 ## Funcionalidades
 
