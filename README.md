@@ -4,7 +4,7 @@ Empréstimos de materiais.
 
 ## Funcionalidades
 
-- Emprestar materiais da faculdade e registrá-los eletronicamente.
+- Emprestar materiais das faculdades e registrá-los eletronicamente.
 
 ## Procedimentos de deploy
  
