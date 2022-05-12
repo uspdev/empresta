@@ -106,6 +106,10 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         $this->authorize('admin');
+
+        if ($categoria->materials->isNotEmpty()){
+            return redirect('/categorias')->with('alert-danger', 'Categoria ainda contém materiais. Por favor delete materiais antes!');
+        }
         $categoria->delete();
         return redirect('/categorias');
     }

@@ -4,7 +4,7 @@
 @include('flash')
     <div class="row" style="margin-bottom:0.5em;">
         <div class="col-sm">
-            <a href="/materials/create" class="btn btn-success">Novo Item</a>
+            <a href="/materials/create" class="btn btn-success">Novo Material</a>
         </div>
     </div>
     <div class="card">
