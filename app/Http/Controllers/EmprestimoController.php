@@ -180,7 +180,8 @@ class EmprestimoController extends Controller
             if($emprestimo != null){
                 $emprestimo->data_devolucao = Carbon::now()->format('Y-m-d H:i:s');
                 $emprestimo->save();
-                $request->session()->flash('alert-success', 'Item devolvido!');
+                $msg = "Item {$emprestimo->material->codigo} - {$emprestimo->material->descricao} devolvido!";
+                $request->session()->flash('alert-success', $msg);
             }
             else{
                 $request->session()->flash('alert-danger', 'Empréstimo não localizado! Verifique se o código do material informado está emprestado atualmente!');
@@ -189,7 +190,7 @@ class EmprestimoController extends Controller
         else{
             $request->session()->flash('alert-danger', 'Item não encontrado! Verifique o código do material!');
         }
-        return redirect('/emprestimos/devolucao');
+        return back();
 
     }
 

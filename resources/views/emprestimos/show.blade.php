@@ -2,6 +2,7 @@
 
 @section('content')
   @inject('pessoa','App\Utils\ReplicadoUtils')
+  @include('flash')
 
   <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
 
@@ -52,5 +53,7 @@
       @endif
     </div>
   </div>
+
+  @includeUnless($emprestimo->data_devolucao, 'emprestimos.partials.devolver-btn')
 
 @endsection('content')

@@ -51,8 +51,9 @@
                         <i class="fas fa-phone"></i> {{ $emprestimo->visitante->telefone }}
                     </td>    
                 @endif                
-                <td>
-                    <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
+                <td class="form-inline">
+                    @include('emprestimos.partials.devolver-btn')
+                    <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto ml-2"><i class="fa fa-eye"></i></a>
                 </td>
             </tr>
         @endforeach
