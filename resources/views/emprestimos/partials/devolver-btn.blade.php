@@ -11,7 +11,7 @@
     <script>
       $(document).ready(function() {
         $('.devolver').on('click', function(e) {
-          if (!confirm('Tem certeza ?')) {
+          if (!confirm('Tem certeza que quer registrar devolução?')) {
             e.preventDefault();
           }
         })
