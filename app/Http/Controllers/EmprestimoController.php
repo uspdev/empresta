@@ -27,15 +27,18 @@ class EmprestimoController extends Controller
         $query = Emprestimo::orderBy('data_emprestimo','asc')->where('data_devolucao', null);
 
         if($request->busca != null){
-            $material = Material::where('codigo', $request->busca)->first();
-            $query->where('material_id', $material->id);
+            if ($material = Material::where('codigo', $request->busca)->first()) {
+                $query->where('material_id', $material->id);
+            } else {
+            $request->session()->flash('alert-danger', "Não há registros para busca por $request->busca!");
+            return back();
+            }
         }
         $emprestimos = $query->paginate(50);
         if ($emprestimos->count() == null) {
             $request->session()->flash('alert-danger', 'Não há registros!');
         }
         return view('emprestimos.index')->with('emprestimos',$emprestimos);
-
     }
 
     /**
