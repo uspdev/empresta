@@ -59,7 +59,7 @@ class UserController extends Controller
         $validated['password'] = Hash::make($validated['password']);
         $validated['tipo'] = 'Balcao';
         $user = User::create($validated);
-        return redirect("/users/$user->id");
+        return redirect("users/$user->id");
     }
 
     /**
@@ -97,7 +97,7 @@ class UserController extends Controller
         $validated['remember_token'] = bcrypt($validated['password']);
         $validated['password'] = Hash::make($validated['password']);
         $user->update($validated);
-        return redirect("/users/$user->id");
+        return redirect("users/$user->id");
     }
 
     /**
@@ -111,6 +111,6 @@ class UserController extends Controller
         $request->session()->flash('alert-danger', 'Não é permitido deletar usuário. Troque a senha para desabilitar o acesso');
 
         #$user->delete();
-        return redirect('/users');
+        return redirect('users');
     }
 }

@@ -124,7 +124,7 @@ class EmprestimoController extends Controller
             return redirect()->back();
         }
         
-        return redirect("/emprestimos/$emprestimo->id");
+        return redirect("emprestimos/$emprestimo->id");
     }
 
 

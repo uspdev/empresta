@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header"><b>Relatório de Empréstimos</b></div>
         <div class="card-body">
-            <form method="GET" action="/emprestimos/relatorio">
+            <form method="GET" action="emprestimos/relatorio">
                 <div class="row">
                     <div class="col-sm" id="busca">
                         <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
@@ -53,7 +53,7 @@
                     <td>{{ $emprestimo->visitante->telefone }}</td>    
                 @endif                
                 <td>
-                    <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
+                    <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
                 </td>
             </tr>
         @endforeach

@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header"><b>Itens emprestados</b></div>
         <div class="card-body">
-            <form method="GET" action="/emprestimos">
+            <form method="GET" action="emprestimos">
                 <div class="row">
                     <div class="col-sm" id="busca">
                         <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
@@ -54,7 +54,7 @@
                         {{ $emprestimo->visitante->telefone }}</td>    
                 @endif                
                 <td>
-                    <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
+                    <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
                 </td>
             </tr>
         @endforeach

@@ -52,7 +52,7 @@ class VisitanteController extends Controller
     {
         $validated = $request->validated();
         $visitante = Visitante::create($validated);
-        return redirect("/visitantes/$visitante->id");
+        return redirect("visitantes/$visitante->id");
     }
 
     /**
@@ -88,7 +88,7 @@ class VisitanteController extends Controller
     {
         $validated = $request->validated();
         $visitante->update($validated);
-        return redirect("/visitantes/$visitante->id");
+        return redirect("visitantes/$visitante->id");
     }
 
     /**
@@ -100,6 +100,6 @@ class VisitanteController extends Controller
     public function destroy(Visitante $visitante)
     {
         $visitante->delete();
-        return redirect('/visitantes');
+        return redirect('visitantes');
     }
 }

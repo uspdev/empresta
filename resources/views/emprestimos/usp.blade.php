@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header"><b>Novo Empréstimo USP</b></div>
         <div class="card-body">
-            <form action="/emprestimos" method="POST">
+            <form action="emprestimos" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>

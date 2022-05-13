@@ -53,7 +53,7 @@ class MaterialController extends Controller
         $validated = $request->validated();
         $validated['created_by_id']= auth()->user()->id;
         $material = Material::create($validated);
-        return redirect("/materials/$material->id");
+        return redirect("materials/$material->id");
     }
 
     /**
@@ -89,7 +89,7 @@ class MaterialController extends Controller
     {
         $validated = $request->validated();
         $material->update($validated);
-        return redirect("/materials/$material->id");
+        return redirect("materials/$material->id");
     }
 
     /**
@@ -101,6 +101,6 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         $material->delete();
-        return redirect('/materials');
+        return redirect('materials');
     }
 }

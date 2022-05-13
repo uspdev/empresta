@@ -8,12 +8,12 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Categoria',
-        'url' => config('app.url') . '/categorias/create',
+        'url' => 'categorias/create',
         'can' => 'admin'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Categorias',
-        'url' => config('app.url') . '/categorias',
+        'url' => 'categorias',
         'can' => 'admin'
     ],
     [
@@ -27,12 +27,12 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Material',
-        'url' => config('app.url') . '/materials/create',
+        'url' => 'materials/create',
         'can' => 'admin'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Material',
-        'url' => config('app.url') . '/materials',
+        'url' => 'materials',
         'can' => 'admin'
     ],
     [
@@ -46,12 +46,12 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Visitante',
-        'url' => config('app.url') . '/visitantes/create',
+        'url' => 'visitantes/create',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Visitantes',
-        'url' => config('app.url') . '/visitantes',
+        'url' => 'visitantes',
         'can' => 'balcao'
     ],
     [
@@ -65,12 +65,12 @@ $submenu1 = [
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Usuário',
-        'url' => config('app.url') . '/users/create',
+        'url' => 'users/create',
         'can' => 'admin'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Usuário',
-        'url' => config('app.url') . '/users',
+        'url' => 'users',
         'can' => 'admin'
     ],
 ];
@@ -78,32 +78,32 @@ $submenu1 = [
 $submenu2 = [
     [
         'text' => '<i class="fas fa-undo"></i> Devolução',
-        'url' => config('app.url') . '/emprestimos/devolucao',
+        'url' => 'emprestimos/devolucao',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-handshake"></i> Empréstimo USP',
-        'url' => config('app.url') . '/emprestimos/usp',
+        'url' => 'emprestimos/usp',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="far fa-handshake"></i> Empréstimo Visitante',
-        'url' => config('app.url') . '/emprestimos/visitante',
+        'url' => 'emprestimos/visitante',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-stream"></i> Itens Emprestados',
-        'url' => config('app.url') . '/emprestimos',
+        'url' => 'emprestimos',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-chart-bar"></i> Relatório de Empréstimos',
-        'url' => config('app.url') . '/emprestimos/relatorio',
+        'url' => 'emprestimos/relatorio',
         'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-barcode"></i> Código de Barras',
-        'url' => config('app.url') . '/categorias/barcode',
+        'url' => 'categorias/barcode',
         'can' => 'admin'
     ],
 
@@ -126,7 +126,7 @@ $right_menu = [
         'text' => '<i class="fas fa-cog"></i>',
         'title' => 'Configurações',
         'target' => '_blank',
-        'url' => config('app.url') . '/item1',
+        'url' => 'item1',
         'align' => 'right',
         'can' => 'admin',
     ],
@@ -134,7 +134,7 @@ $right_menu = [
         'text' => '<i class="fas fa-hard-hat"></i>',
         'title' => 'Logs',
         'target' => '_blank',
-        'url' => config('app.url') . '/logs',
+        'url' => 'logs',
         'align' => 'right',
         'can' => 'admin',
     ],
@@ -148,8 +148,8 @@ return [
     'skin' => env('USP_THEME_SKIN', 'uspdev'),
     'app_url' => config('app.url'),
     'logout_method' => 'POST',
-    'logout_url' => config('app.url') . '/logout',
-    'login_url' => config('app.url') . '/login_intern',
+    'logout_url' => 'logout',
+    'login_url' => 'login_intern',
     'menu' => $menu,
     'right_menu' => $right_menu,
 ];

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Novo Visitante</b></div>
         <div class="card-body">
-            <form action="/visitantes" method="POST">
+            <form action="visitantes" method="POST">
                 @csrf
                 @include('visitantes.form')
             </form>
