@@ -4,8 +4,7 @@
   @inject('pessoa','App\Utils\ReplicadoUtils')
   @include('flash')
 
-  <h2>Empréstimo:<b> {{ $emprestimo->material->descricao }}</b></h2>
-
+  <h2>Empréstimo:<b> ({{ $emprestimo->material->categoria->nome }}) {{ $emprestimo->material->descricao }}</b></h2>
 
   <div class="row">
     <div class="col-md-8">
@@ -39,10 +38,6 @@
           <tr>
             <th>Código</th>
             <td>{{ $emprestimo->material->codigo }}</td>
-          </tr>
-          <tr>
-            <th>Tipo</th>
-            <td>{{ $emprestimo->material->categoria->nome }}</td>
           </tr>
         </tbody>
       </table>
