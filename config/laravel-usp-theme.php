@@ -125,14 +125,6 @@ $right_menu = [
     [
         'key' => 'senhaunica-socialite',
     ],
-    // [
-    //     'text' => '<i class="fas fa-cog"></i>',
-    //     'title' => 'Configurações',
-    //     'target' => '_blank',
-    //     'url' => 'item1',
-    //     'align' => 'right',
-    //     'can' => 'admin',
-    // ],
     [
         'text' => '<i class="fas fa-hard-hat"></i>',
         'title' => 'Logs',
