@@ -12,6 +12,6 @@
     <input type="text" class="form-control" name="email" value="{{ old('email', $visitante->email) }}">   
 </div>
 <div class="form-group">
-    <a href="/categorias" class="btn btn-primary float-left">Voltar</a>
+    <a href="categorias" class="btn btn-primary float-left">Voltar</a>
     <button type="submit" class="btn btn-success float-right">Enviar</button> 
 </div> 

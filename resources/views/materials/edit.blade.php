@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Edição de Material</b></div>
         <div class="card-body">
-            <form action="/materials/{{$material->id}}" method="POST">
+            <form action="materials/{{$material->id}}" method="POST">
                 @csrf
                 @method('PATCH')
                 @include('materials.form')

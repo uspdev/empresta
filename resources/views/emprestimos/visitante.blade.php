@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Novo Empréstimo Visitante</b></div>
         <div class="card-body">
-            <form action="/emprestimos" method="POST">
+            <form action="emprestimos" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <a href="/categorias" class="btn btn-primary float-left">Voltar</a>
+                    <a href="categorias" class="btn btn-primary float-left">Voltar</a>
                     <button type="submit" class="btn btn-success float-right">Enviar</button> 
                 </div>
             </form>

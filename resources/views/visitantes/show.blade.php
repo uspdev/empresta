@@ -5,15 +5,15 @@
         <div class="col-sm">
             <div class="row float-left">
                 <div class="col-auto">
-                    <a href="/visitantes/create" class="btn btn-success">Nova categoria</a><br><br>
+                    <a href="visitantes/create" class="btn btn-success">Nova categoria</a><br><br>
                 </div>
             </div>
             <div class="row float-right">
                 <div class="col-auto">
-                    <a href="/visitantes/{{$visitante->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
+                    <a href="visitantes/{{$visitante->id}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</a>
                 </div>
                 <div class="col-auto">
-                    <form method="POST" action="/visitantes/{{ $visitante->id }}">
+                    <form method="POST" action="visitantes/{{ $visitante->id }}">
                         @csrf 
                         @method('delete')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i> Apagar</button>
@@ -43,5 +43,5 @@
             </tr>
         </tbody>
     </table>
-    <a href="/categorias" class="btn btn-primary">Voltar</a>
+    <a href="categorias" class="btn btn-primary">Voltar</a>
 @endsection('content')

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Novo Material</b></div>
         <div class="card-body">
-            <form action="/materials" method="POST">
+            <form action="materials" method="POST">
                 @csrf
                 @include('materials.form')
             </form>

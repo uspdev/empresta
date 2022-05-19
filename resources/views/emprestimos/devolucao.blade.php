@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Devolução</b></div>
         <div class="card-body">
-            <form action="/emprestimos/devolver" method="POST">
+            <form action="emprestimos/devolver" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>

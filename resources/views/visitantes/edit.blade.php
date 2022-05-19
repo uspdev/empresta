@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>Edição de Visitante</b></div>
         <div class="card-body">
-            <form action="/visitantes/{{$visitante->id}}" method="POST">
+            <form action="visitantes/{{$visitante->id}}" method="POST">
                 @csrf
                 @method('PATCH')
                 @include('visitantes.form')

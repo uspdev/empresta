@@ -27,15 +27,18 @@ class EmprestimoController extends Controller
         $query = Emprestimo::orderBy('data_emprestimo','asc')->where('data_devolucao', null);
 
         if($request->busca != null){
-            $material = Material::where('codigo', $request->busca)->first();
-            $query->where('material_id', $material->id);
+            if ($material = Material::where('codigo', $request->busca)->first()) {
+                $query->where('material_id', $material->id);
+            } else {
+            $request->session()->flash('alert-danger', "Não há registros para busca por $request->busca!");
+            return back();
+            }
         }
         $emprestimos = $query->paginate(50);
         if ($emprestimos->count() == null) {
             $request->session()->flash('alert-danger', 'Não há registros!');
         }
         return view('emprestimos.index')->with('emprestimos',$emprestimos);
-
     }
 
     /**
@@ -124,7 +127,7 @@ class EmprestimoController extends Controller
             return redirect()->back();
         }
         
-        return redirect("/emprestimos/$emprestimo->id");
+        return redirect("emprestimos/$emprestimo->id");
     }
 
 
@@ -177,7 +180,8 @@ class EmprestimoController extends Controller
             if($emprestimo != null){
                 $emprestimo->data_devolucao = Carbon::now()->format('Y-m-d H:i:s');
                 $emprestimo->save();
-                $request->session()->flash('alert-success', 'Item devolvido!');
+                $msg = "Item {$emprestimo->material->codigo} - {$emprestimo->material->descricao} devolvido!";
+                $request->session()->flash('alert-success', $msg);
             }
             else{
                 $request->session()->flash('alert-danger', 'Empréstimo não localizado! Verifique se o código do material informado está emprestado atualmente!');
@@ -186,7 +190,7 @@ class EmprestimoController extends Controller
         else{
             $request->session()->flash('alert-danger', 'Item não encontrado! Verifique o código do material!');
         }
-        return redirect('/emprestimos/devolucao');
+        return back();
 
     }
 

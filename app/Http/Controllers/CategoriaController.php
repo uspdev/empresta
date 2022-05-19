@@ -55,7 +55,7 @@ class CategoriaController extends Controller
         $this->authorize('admin');
         $validated = $request->validated();
         $categoria = Categoria::create($validated);
-        return redirect("/categorias/$categoria->id");
+        return redirect("categorias/$categoria->id");
     }
 
     /**
@@ -94,7 +94,7 @@ class CategoriaController extends Controller
         $this->authorize('admin');
         $validated = $request->validated();
         $categoria->update($validated);
-        return redirect("/categorias/$categoria->id");
+        return redirect("categorias/$categoria->id");
     }
 
     /**

@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header"><b>Itens emprestados</b></div>
         <div class="card-body">
-            <form method="GET" action="/emprestimos">
+            <form method="GET" action="emprestimos">
                 <div class="row">
                     <div class="col-sm" id="busca">
                         <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
@@ -37,24 +37,23 @@
                 <td>{{ $emprestimo->material->codigo }}</td>
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
-                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i') }}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
-                    <td>                        
-                        @foreach($pessoa::pessoaUSP($emprestimo->username) as $data)
-                            <br>{{ $data }}
-                        @endforeach
+                    <td> 
+                        {{ implode(', ',$pessoa::pessoaUSP($emprestimo->username)) }}       
                         <br><b>Vacinação covid-19</b>: {{ \Uspdev\Replicado\Pessoa::obterSituacaoVacinaCovid19($emprestimo->username) }}
                     </td>
-                    
                 @else
                     <td>&nbsp;</td>    
-                    <td>{{ $emprestimo->visitante->nome }} <br>
+                    <td>{{ $emprestimo->visitante->nome }}, 
                         {{ $emprestimo->visitante->email }} <br>    
-                        {{ $emprestimo->visitante->telefone }}</td>    
+                        <i class="fas fa-phone"></i> {{ $emprestimo->visitante->telefone }}
+                    </td>    
                 @endif                
-                <td>
-                    <a href="/emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto float-left"><i class="fa fa-eye"></i></a>
+                <td class="form-inline">
+                    @include('emprestimos.partials.devolver-btn')
+                    <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto ml-2"><i class="fa fa-eye"></i></a>
                 </td>
             </tr>
         @endforeach
