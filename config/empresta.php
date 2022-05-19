@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'admins' => env('SENHAUNICA_ADMINS'),
+    # Permite emprestar multiplos materiais para a mesma pessoa. default=false
+    'multiplosMateriais' => env('MULTIPLOS_MATERIAIS', false)
 ];
