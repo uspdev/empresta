@@ -99,23 +99,26 @@ class EmprestimoController extends Controller
             }
 
             // Verifica se o usuário não tem item emprestado
-            if($request->username != null) {
-                $emprestimo = Emprestimo::where('username', $request->username)->where('data_devolucao', null)->first();
-                if($emprestimo != null){
-                    $request->session()->flash('alert-danger', 
-                      'Empréstimo não realizado: Usuário está com o item ' . $emprestimo->material->codigo . ' emprestado!');
-                    return redirect()->back();
+            if (!config('empresta.multiplosMateriais')) {
+                if($request->username != null) {
+                    $emprestimo = Emprestimo::where('username', $request->username)->where('data_devolucao', null)->first();
+                    if($emprestimo != null){
+                        $request->session()->flash('alert-danger', 
+                        'Empréstimo não realizado: Usuário está com o item ' . $emprestimo->material->codigo . ' emprestado!');
+                        return redirect()->back();
+                    }
+                }
+
+                if($request->visitante_id != null) {
+                    $emprestimo = Emprestimo::where('visitante_id', $request->visitante_id)->where('data_devolucao', null)->first();
+                    if($emprestimo != null){
+                        $request->session()->flash('alert-danger', 
+                        'Empréstimo não realizado: Usuário está com o item ' . $emprestimo->material->codigo . ' emprestado!');
+                        return redirect()->back();
+                    }
                 }
             }
 
-            if($request->visitante_id != null) {
-                $emprestimo = Emprestimo::where('visitante_id', $request->visitante_id)->where('data_devolucao', null)->first();
-                if($emprestimo != null){
-                    $request->session()->flash('alert-danger', 
-                      'Empréstimo não realizado: Usuário está com o item ' . $emprestimo->material->codigo . ' emprestado!');
-                    return redirect()->back();
-                }
-            }
 
             $validated['data_emprestimo']= Carbon::now()->format('Y-m-d H:i:s');
             $validated['created_by_id']= auth()->user()->id;

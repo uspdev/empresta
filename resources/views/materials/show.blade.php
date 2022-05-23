@@ -5,7 +5,7 @@
         <div class="col-sm">
             <div class="row float-left">
                 <div class="col-auto">
-                    <a href="materials/create" class="btn btn-success">Nova categoria</a><br><br>
+                    <a href="materials/create" class="btn btn-success">Novo material</a><br><br>
                 </div>
             </div>
             <div class="row float-right">
