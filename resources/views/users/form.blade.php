@@ -11,6 +11,6 @@
     <input class="form-control" name="password" type="password" placeholder="Senha" value="{{ old('password', $user->password) }}">   
 </div>
 <div class="form-group">
-    <a href="users" class="btn btn-primary">Voltar</a>
-    <button type="submit" class="btn btn-success float-right">Enviar</button> 
+    <a href="users" class="btn btn-primary float-right">Voltar</a>
+    <button type="submit" class="btn btn-success float-left">Enviar</button> 
 </div>

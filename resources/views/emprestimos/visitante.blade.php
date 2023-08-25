@@ -26,8 +26,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <a href="categorias" class="btn btn-primary float-left">Voltar</a>
-                    <button type="submit" class="btn btn-success float-right">Enviar</button> 
+                    <a href="categorias" class="btn btn-primary float-right">Voltar</a>
+                    <button type="submit" class="btn btn-success float-left">Enviar</button> 
                 </div>
             </form>
         </div>
