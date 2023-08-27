@@ -8,12 +8,11 @@ use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', [LoginInternController::class, 'index']);
 Route::get('/home', function () {
     return view('home');
 });
-Route::get('login_intern', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
-Route::post('login_intern', [LoginInternController::class, 'login'])->name('login_intern');
+Route::get('/', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
+Route::post('/', [LoginInternController::class, 'login'])->name('login_intern');
 
 Route::get('emprestimos/relatorio', [EmprestimoController::class,'relatorio'])->name('emprestimos.relatorio');
 Route::get('emprestimos/usp', [EmprestimoController::class,'usp'])->name('emprestimos.usp');
