@@ -137,27 +137,36 @@ class CategoriaController extends Controller
             }
         }
         $materiais = $materiais->get();
-        // Lógica temporária para gerar códigos de barras com 6 em cada linha
+        // Lógica temporária para gerar códigos de barras com 6 ou 3 códigos em cada linha
         $n = count($materiais);
         $trs = '';
-        for($i=0; $i < floor($n/6)*6; $i = $i+6){
+        $cols = 6; // 3 ou 6
+        for($i=0; $i < floor($n/$cols)*$cols; $i = $i+$cols){
             $tr = '<tr>';
-            for($j=0; $j < 6; $j++){
+            for($j=0; $j < $cols; $j++){
                 $code = $materiais[$i+$j]->codigo;
+                $descricao = $materiais[$i+$j]->descricao;
                 $barcode = base64_encode($generator->getBarcode($code,$generator::TYPE_CODE_128));
-                $tr .= "<td><img src='data:image/png;base64,{$barcode}' width='80'> <br> {$code}</td>";
+                if($cols == 3)
+                    $tr .= "<td> <div style='width: 230px; margin: 0 auto'> {$descricao}</div>{$code} <br> <img src='data:image/png;base64,{$barcode}' width='120' style='margin-bottom: 10px'></td>";
+                else
+                    $tr .= "<td><img src='data:image/png;base64,{$barcode}' width='80'> <br> {$code}</td>";
             }
             $tr .= '</tr>';
             $trs .= $tr;
         }
         // Faltantes
         $tr = '<tr>';
-        for($i = floor($n/6)*6; $i < $n; $i++){
+        for($i = floor($n/$cols)*$cols; $i < $n; $i++){
             $code = $materiais[$i]->codigo;
+            $descricao = $materiais[$i]->descricao;
             $barcode = base64_encode($generator->getBarcode($code,$generator::TYPE_CODE_128));
-            $tr .= "<td><img src='data:image/png;base64,{$barcode}' width='80'> <br> {$code}</td>";
+            if($cols == 3)
+                $tr .= "<td> <div style='width: 230px; margin: 0 auto'> {$descricao}</div>{$code} <br> <img src='data:image/png;base64,{$barcode}' width='120' style='margin-bottom: 10px'></td>";
+            else
+                $tr .= "<td><img src='data:image/png;base64,{$barcode}' width='80'> <br> {$code}</td>";
         }
-        $faltantes = str_repeat("<td>Null</td>", 6 - $n%6);
+        $faltantes = str_repeat("<td>Null</td>", 3 - $n%3);
         $tr .= $faltantes;
         $tr .= '</tr>';
         $trs .= $tr;
