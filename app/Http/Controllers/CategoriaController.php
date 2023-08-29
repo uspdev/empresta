@@ -140,7 +140,7 @@ class CategoriaController extends Controller
         // Lógica temporária para gerar códigos de barras com 6 ou 3 códigos em cada linha
         $n = count($materiais);
         $trs = '';
-        $cols = 6; // 3 ou 6
+        $cols = (int) $request->formatacao; // 3 ou 6
         for($i=0; $i < floor($n/$cols)*$cols; $i = $i+$cols){
             $tr = '<tr>';
             for($j=0; $j < $cols; $j++){
