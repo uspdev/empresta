@@ -9,6 +9,7 @@
                 @csrf
                 <div class="row form-group">
                     <div class="col-sm">
+                        <label>Categoria:</label>
                         <select multiple class="form-control" name="categoria_id[]">
                             <option value="" selected="">- Selecione -</option>
                             @foreach ($categorias as $option)
@@ -18,6 +19,13 @@
                             @endforeach
                         </select>
                     </div>                
+                </div>
+                <div class="form-group">
+                    <label>Formatação do Código de Barras:</label>
+                    <select class="form-control" name="formatacao">
+                        <option value="6" selected>Menor: 6 colunas, apenas com o cógido do material</option>
+                        <option value="3">Maior: 3 colunas, com a descrição e o cógigo do material</option>
+                    </select>
                 </div>
                 <div class="row">
                     <div class="col-sm">
