@@ -10,11 +10,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>
-                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id') }}">   
+                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id') }}" required autofocus>   
                 </div>
                 <div class="form-group">
                     <label for="username"><b>Número USP</b></label> 
-                    <input type="text" class="form-control" name="username" value="{{ old('username') }}">        
+                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>        
                     <input type="text" class="form-control" name="visitante_id" hidden value="">   
                 </div>
                 <div class="form-group">
@@ -29,11 +29,15 @@
 @section('javascripts_bottom')
     <script>
 
+        /******************************************************* 
+        * Código substituído pelo atributo 'autofocus' do html5
+        * ******************************************************
         // https://stackoverflow.com/questions/277544/how-to-set-the-focus-to-the-first-input-element-in-an-html-form-independent-from
         // Foco no primeiro input da página
         $(document).ready(function() {
             $('form:first *:input[type!=hidden]:first').focus();
         });
+        ********************************************************/
 
         // jQuery plugin to prevent double submission of forms
         // https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery
@@ -64,7 +68,9 @@
             }
             });
         };
-        $('form').disableEnter();
+
+        if({{!config('empresta.habilitarEnter')}})
+            $('form').disableEnter();
   
     </script>
 @endsection
