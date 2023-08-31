@@ -19,6 +19,7 @@
         "laravellegends/pt-br-validator": "^8.0",
         "picqer/php-barcode-generator": "^2.2",
         "rap2hpoutre/laravel-log-viewer": "^1.7",
+        "uspdev/laravel-tools": "^1.1",
         "uspdev/laravel-usp-theme": "^2.0",
         "uspdev/replicado": "^1.6",
         "uspdev/senhaunica-socialite": "^4.0",
