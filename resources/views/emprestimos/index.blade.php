@@ -3,12 +3,6 @@
 @section('content')
 @include('flash')
 
-<div class="d-flex justify-content-start mb-3">
-    <a class="btn btn-success mr-3" href="{{route('emprestimos.usp')}}"><i class="fas fa-handshake"></i> Empréstimo USP</a>
-    <a class="btn btn-success mr-3" href="{{route('emprestimos.visitante')}}"><i class="far fa-handshake"></i> Empréstimo Visitante</a>
-    <a class="btn btn-success mr-3" href="{{route('emprestimos.devolucao')}}"><i class="fas fa-undo"></i> Devolução</a>
-</div>
-
 @inject('pessoa','App\Utils\ReplicadoUtils')
 
     <div class="card">

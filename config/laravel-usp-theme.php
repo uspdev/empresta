@@ -110,6 +110,21 @@ $submenu2 = [
 ];
 $menu = [
     [
+	'text' => '<span class="btn btn-success mr-3"><i class="fas fa-handshake"></i> USP</span>',
+	'url' => 'emprestimos/usp',
+        'can' => 'balcao'	
+    ],
+    [
+	'text' => '<span class="btn btn-success mr-3"><i class="far fa-handshake"></i> Visitante</span>',
+	'url' => 'emprestimos/visitante',
+        'can' => 'balcao'	
+    ],
+    [
+	'text' => '<span class="btn btn-success mr-3"><i class="fas fa-undo"></i> Devolução</span>',
+	'url' => 'emprestimos/devolucao',
+        'can' => 'balcao'	
+    ],
+    [
         'text' => '<i class="fas fa-user-cog"></i> Administração',
         'submenu' => $submenu1,
         'can' => 'balcao',
