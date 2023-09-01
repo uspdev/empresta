@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" name="username" hidden value="">        
                     <div class="col-sm form-group">
                         <label for="visitante_id"><b>Visitante</b></label> 
-                        <select class="form-control" name="visitante_id">
+                        <select class="form-control visitante-select" name="visitante_id">
                             <option value="" selected="">- Selecione -</option>
                             @foreach ($emprestimo->visitantesOptions() as $option)
                                 <option value="{{$option->id ?? ''}}" {{ ( old('visitante_id') == $option->id) ? 'selected' : ''}}>
@@ -43,7 +43,20 @@
         // Foco no primeiro input da página
         $(document).ready(function() {
             $('form:first *:input[type!=hidden]:first').focus();
+
+            let visitante_select = $('.visitante-select');
+            visitante_select.select2({
+                theme: 'bootstrap4',
+                width: '100%'
+            });
         });
+
+        // coloca o focus no select2
+        // https://stackoverflow.com/questions/25882999/set-focus-to-search-text-field-when-we-click-on-select-2-drop-down
+         $(document).on('select2:open', () => {
+            document.querySelector('.select2-search__field').focus();
+        });
+
 
         // jQuery plugin to prevent double submission of forms
         // https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery
