@@ -9,7 +9,7 @@ use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\UserController;
 
 Route::get('/home', function () {
-    return view('home');
+    return redirect()->route('emprestimos.index');
 });
 Route::get('/', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
 Route::post('/', [LoginInternController::class, 'login'])->name('login_intern');
