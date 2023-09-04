@@ -16,3 +16,4 @@ yarn-error.log
 
 .lando.yml
 Dockerfile.custom
+php.ini
