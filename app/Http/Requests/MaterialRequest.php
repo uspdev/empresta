@@ -27,7 +27,7 @@ class MaterialRequest extends FormRequest
     {
         $rules = [
             'ativo' => 'required|integer',
-            'codigo' => ['required','integer'],
+            'codigo' => ['required', 'min:3'],
             'categoria_id' => 'required',
             'descricao' => 'required',
         ];

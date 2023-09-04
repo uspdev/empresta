@@ -26,7 +26,7 @@ class EmprestimoRequest extends FormRequest
         return [
             'username' => ['integer','required_without:visitante_id','nullable'],
             'visitante_id' => ['integer','required_without:username','nullable'],
-            'material_id' => 'integer|required',
+            'material_id' => 'required',
         ];
     }
 
@@ -34,7 +34,7 @@ class EmprestimoRequest extends FormRequest
     {
         $this->merge([
             'username' => (int) $this->username,
-            'material_id' => (int) $this->material_id,
+            'material_id' => $this->material_id,
         ]);
     }
 }

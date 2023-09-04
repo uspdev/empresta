@@ -125,12 +125,12 @@ $menu = [
         'can' => 'balcao'	
     ],
     [
-        'text' => '<i class="fas fa-user-cog"></i> Administração',
+        'text' => '<span class="d-inline-block py-2"><i class="fas fa-user-cog"></i> Administração</span>',
         'submenu' => $submenu1,
         'can' => 'balcao',
     ],
     [
-        'text' => '<i class="fas fa-retweet"></i> Empréstimos/Devolução',
+        'text' => '<span class="d-inline-block py-2"><i class="fas fa-retweet"></i> Empréstimos/Devolução</span>',
         'submenu' => $submenu2,
         'can' => 'balcao',
     ],
