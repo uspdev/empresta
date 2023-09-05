@@ -9,13 +9,13 @@
                 @csrf
                 <div class="form-group">
                     <label for="material_id"><b>Código</b></label>
-                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id') }}">   
+                    <input type="text" class="form-control" name="material_id" value="{{ old('material_id') }}" required autofocus>   
                 </div>
                 <div class="row">
                     <input type="text" class="form-control" name="username" hidden value="">        
                     <div class="col-sm form-group">
                         <label for="visitante_id"><b>Visitante</b></label> 
-                        <select class="form-control visitante-select" name="visitante_id">
+                        <select class="form-control visitante-select" name="visitante_id" required>
                             <option value="" selected="">- Selecione -</option>
                             @foreach ($emprestimo->visitantesOptions() as $option)
                                 <option value="{{$option->id ?? ''}}" {{ ( old('visitante_id') == $option->id) ? 'selected' : ''}}>
@@ -39,10 +39,15 @@
 @section('javascripts_bottom')
     <script>
 
-        // https://stackoverflow.com/questions/277544/how-to-set-the-focus-to-the-first-input-element-in-an-html-form-independent-from
-        // Foco no primeiro input da página
         $(document).ready(function() {
-            $('form:first *:input[type!=hidden]:first').focus();
+          /******************************************************* 
+          * Código substituído pelo atributo 'autofocus' do html5
+          * ******************************************************
+            // https://stackoverflow.com/questions/277544/how-to-set-the-focus-to-the-first-input-element-in-an-html-form-independent-from
+            // Foco no primeiro input da página
+            //$('form:first *:input[type!=hidden]:first').focus();
+
+           ********************************************************/
 
             let visitante_select = $('.visitante-select');
             visitante_select.select2({
@@ -87,7 +92,8 @@
             }
             });
         };
-        $('form').disableEnter();
+        if({{!config('empresta.habilitarEnter')}})
+            $('form').disableEnter();
   
     </script>
 @endsection

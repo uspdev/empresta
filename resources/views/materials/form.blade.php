@@ -1,7 +1,7 @@
 
 <div class="form-group">
     <label for="codigo"><b>Código</b></label>
-    <input type="text" class="form-control" name="codigo" value="{{ old('codigo', $material->codigo) }}">   
+    <input type="text" class="form-control" name="codigo" value="{{ old('codigo', $material->codigo) }}" minlength="3">   
 </div>
 <div class="form-group">
     <label for="categoria_id"><b>Tipo</b></label> 
