@@ -4,7 +4,12 @@ Empréstimos de materiais.
 
 ## Funcionalidades
 
-- Emprestar materiais das faculdades e registrá-los eletronicamente.
+- Gerenciar os materiais das faculdades.
+- Gerar PDF com os códigos de barras dos materiais cadastrados.
+- Registrar empréstimos de materiais, bem como sua devolução.
+- Gerar relatório com os empréstimos realizados.
+- Listar materiais que estão emprestados.
+- Gerenciar usuários visitantes para realizar empréstimos.
 
 ## Procedimentos de deploy
  
