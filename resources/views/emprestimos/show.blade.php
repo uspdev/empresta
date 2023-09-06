@@ -18,7 +18,13 @@
                 @foreach ($pessoa::pessoaUSP($emprestimo->username) as $data)
                   <br>{{ $data }}
                 @endforeach
-                <br><b>Vacinação covid-19</b>:
+                <br><b>Vínculos e Setores:</b>
+                <ul class="mb-2">
+                  @foreach ($pessoa::vinculos($emprestimo->username) as $vinculo)
+                      <li>{{$vinculo}}</li>
+                  @endforeach
+                </ul>
+                <b>Vacinação covid-19</b>:
                 {{ \Uspdev\Replicado\Pessoa::obterSituacaoVacinaCovid19($emprestimo->username) }}
               @else
                 {{ $emprestimo->visitante->nome }} - {{ $emprestimo->visitante->email }}

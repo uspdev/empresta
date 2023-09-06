@@ -27,4 +27,14 @@ class ReplicadoUtils
             }
         }
     }
+
+    /**
+     * Retorna os vínculos juntamente com os setores da pessoa.
+     *
+     * @param int $codpes
+     * @return array $vinculos
+     */
+    public static function vinculos($codpes){
+        return Pessoa::vinculos($codpes);
+    }
 }
