@@ -141,13 +141,9 @@ $right_menu = [
         'key' => 'senhaunica-socialite',
     ],
     [
-        'text' => '<i class="fas fa-hard-hat"></i>',
-        'title' => 'Logs',
-        'target' => '_blank',
-        'url' => 'logs',
-        'align' => 'right',
-        'can' => 'admin',
+        'key' => 'laravel-tools',
     ],
+
 ];
 
 return [
