@@ -10,7 +10,7 @@ use App\Models\Material;
 use Uspdev\Wsfoto;
 use Uspdev\Replicado\Pessoa;
 use App\Utils\ReplicadoUtils;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EmprestimoController extends Controller
 {
@@ -25,7 +25,7 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
-        if(!Auth::user()->hasPermissionTo('balcao')) return view('home');
+        if(!Gate::allows('balcao')) return view('home');
 
         $query = Emprestimo::orderBy('data_emprestimo','asc')->where('data_devolucao', null);
 
