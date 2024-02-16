@@ -10,12 +10,13 @@ use App\Models\Material;
 use Uspdev\Wsfoto;
 use Uspdev\Replicado\Pessoa;
 use App\Utils\ReplicadoUtils;
+use Illuminate\Support\Facades\Gate;
 
 class EmprestimoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:balcao');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -24,6 +25,8 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
+        if(!Gate::allows('balcao')) return view('home');
+
         $query = Emprestimo::orderBy('data_emprestimo','asc')->where('data_devolucao', null);
 
         if($request->busca != null){
@@ -54,16 +57,19 @@ class EmprestimoController extends Controller
     }*/
 
     public function usp(){
+        $this->authorize('balcao');
         return view('emprestimos.usp');  
     }
 
     public function visitante(){
+        $this->authorize('balcao');
         return view('emprestimos.visitante')->with([
             'emprestimo' => New Emprestimo,
         ]);
     }
 
     public function devolucao(){
+        $this->authorize('balcao');
         return view('emprestimos.devolucao');
     }
 
@@ -75,6 +81,8 @@ class EmprestimoController extends Controller
      */
     public function store(EmprestimoRequest $request)
     {
+        $this->authorize('balcao');
+
         $validated = $request->validated();
 
         if($validated['username'] != null and ReplicadoUtils::pessoaUSP($validated['username'])[0] == null){
@@ -142,6 +150,8 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
+        $this->authorize('balcao');
+
         if($emprestimo->username) {
             $emprestimo->foto = Wsfoto::obter($emprestimo->username);
         }
@@ -174,6 +184,8 @@ class EmprestimoController extends Controller
     }*/
 
     public function devolver(Request $request){
+        $this->authorize('balcao');
+
         $request->validate([
             'material_id' => 'required',
         ]);
@@ -205,12 +217,16 @@ class EmprestimoController extends Controller
      */
     public function destroy(Emprestimo $emprestimo)
     {
+        $this->authorize('balcao');
+
         $emprestimo->delete();
         return redirect('/');
     }
 
     public function relatorio(Request $request)
     {
+        $this->authorize('balcao');
+
         $query = Emprestimo::orderBy('data_emprestimo','asc');
 
         if($request->busca != null){
