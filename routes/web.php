@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 
 Route::get('/home', function () {
@@ -27,3 +28,5 @@ Route::resource('materials', MaterialController::class);
 Route::resource('visitantes', VisitanteController::class);
 Route::resource('emprestimos', EmprestimoController::class);
 Route::resource('users', UserController::class);
+
+Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
