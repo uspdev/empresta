@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginInternController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CursoHabController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
@@ -30,3 +31,5 @@ Route::resource('emprestimos', EmprestimoController::class);
 Route::resource('users', UserController::class);
 
 Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+
+Route::get('cursos_hab', [CursoHabController::class, 'index'])->name('cursos_hab.index');
