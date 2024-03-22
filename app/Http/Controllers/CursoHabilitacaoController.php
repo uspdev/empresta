@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Uspdev\Replicado\Estrutura;
 use Uspdev\Replicado\Graduacao;
 
-class CursoHabController extends Controller
+class CursoHabilitacaoController extends Controller
 {
     public function __construct() {
         $this->middleware('can:admin');
