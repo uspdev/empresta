@@ -11,6 +11,7 @@ class Departamento extends Model
     use HasFactory;
 
     protected $table = 'departamentos_de_ensino';
+    protected $guarded = ['id'];
 
     public function cursos(): HasMany
     {
