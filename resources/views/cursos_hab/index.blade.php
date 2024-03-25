@@ -11,7 +11,7 @@
                     <label><b>Curso / Habilitação / Período da Habilitação</b></label>
                     <select name="curso_hab" class="curso_hab form-control" required>
                         @foreach ($cursos_hab as $curso_hab)
-                            <option value='{"codcur": {{$curso_hab['codcur']}}, "codhab": {{$curso_hab['codhab']}}, "nomcur": "{{$curso_hab['nomcur']}}", "nomhab": "{{$curso_hab['nomhab']}}"}'>{{$curso_hab['codcur'] . " " . $curso_hab['nomcur']}} / {{$curso_hab['codhab'] . " " . $curso_hab['nomhab']}} / {{$curso_hab['perhab']}}</option>
+                            <option value='{"codcur": {{$curso_hab['codcur']}}, "codhab": {{$curso_hab['codhab']}}, "nomcur": "{{$curso_hab['nomcur']}}", "nomhab": "{{$curso_hab['nomhab']}}", "perhab": "{{$curso_hab['perhab']}}"}'>{{$curso_hab['codcur'] . " " . $curso_hab['nomcur']}} / {{$curso_hab['codhab'] . " " . $curso_hab['nomhab']}} / {{$curso_hab['perhab']}}</option>
                         @endforeach
                     </select>
                     <small class="form-text text-muted">Os números mostrados são o código do curso e o código da habilitação respectivamente.</small>

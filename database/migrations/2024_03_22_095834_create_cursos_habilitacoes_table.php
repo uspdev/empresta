@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nomcur');
             $table->integer('codhab');
             $table->string('nomhab');
+            $table->string('perhab');
             $table->foreignId('departamento_id')->constrained(table: 'departamentos_de_ensino')->cascadeOnDelete();
             $table->timestamps();
         });

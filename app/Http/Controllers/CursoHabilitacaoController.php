@@ -48,6 +48,7 @@ class CursoHabilitacaoController extends Controller
         $curso_hab->nomcur = $curso_hab_decode->nomcur;
         $curso_hab->codhab = $curso_hab_decode->codhab;
         $curso_hab->nomhab = $curso_hab_decode->nomhab;
+        $curso_hab->perhab = $curso_hab_decode->perhab;
         $curso_hab->departamento()->associate($departamento);
         $curso_hab->save();
 
