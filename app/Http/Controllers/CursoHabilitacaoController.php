@@ -14,15 +14,20 @@ class CursoHabilitacaoController extends Controller
     }
 
     public function index(){
-        $cursos_hab = Graduacao::obterCursosHabilitacoes(getenv('REPLICADO_CODUNDCLG'));
-        $departamentos_ensino = Graduacao::listarDepartamentosDeEnsino();
-
         $cursos_cadastrados = CursoHabilitacao::all();
 
         return view('cursos_hab.index')->with([
+            'cursos_cadastrados' => $cursos_cadastrados->isEmpty() ? array() : $cursos_cadastrados
+        ]);
+    }
+
+    public function create(){
+        $cursos_hab = Graduacao::obterCursosHabilitacoes(getenv('REPLICADO_CODUNDCLG'));
+        $departamentos_ensino = Graduacao::listarDepartamentosDeEnsino();
+
+        return view('cursos_hab.create')->with([
             'cursos_hab' => $cursos_hab,
             'departamentos_ensino' => $departamentos_ensino,
-            'cursos_cadastrados' => $cursos_cadastrados->isEmpty() ? array() : $cursos_cadastrados
         ]);
     }
 

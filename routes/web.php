@@ -32,4 +32,4 @@ Route::resource('users', UserController::class);
 
 Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 
-Route::resource('cursos_hab', CursoHabilitacaoController::class)->only('index', 'store');
+Route::resource('cursos_hab', CursoHabilitacaoController::class)->only('index', 'store', 'create');
