@@ -25,7 +25,10 @@
                     </select>
                 </div>
 
-                <button class="btn btn-success">Enviar</button>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-success">Enviar</button>
+                    <a href="{{route('cursos_hab.index')}}" class="btn btn-primary">Voltar</a>
+                </div>
             </form>
         </div>
     </div>
@@ -44,8 +47,6 @@
                 theme: 'bootstrap4',
                 language: 'pt-BR'
             });
-
-            new DataTable('#cursos_cadastrados');
         });
 
         // coloca o focus no select2

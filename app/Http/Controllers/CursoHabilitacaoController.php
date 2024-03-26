@@ -73,4 +73,30 @@ class CursoHabilitacaoController extends Controller
             'departamentos_ensino' => $departamentos_ensino,
         ]);
     }
+
+    public function update(Request $request, CursoHabilitacao $curso){
+        $validated = $request->validate([
+            'curso_hab' => 'required',
+            'departamento_ensino' => 'required',
+        ]);
+        
+        $curso_hab_decode = json_decode($validated['curso_hab']);
+        $departamento_decode = json_decode($validated['departamento_ensino']);
+
+        $departamento = Departamento::firstOrCreate([
+            'codset' => $departamento_decode->codset,
+            'nomabvset' => $departamento_decode->nomabvset
+        ]);
+
+        $curso->codcur = $curso_hab_decode->codcur;
+        $curso->nomcur = $curso_hab_decode->nomcur;
+        $curso->codhab = $curso_hab_decode->codhab;
+        $curso->nomhab = $curso_hab_decode->nomhab;
+        $curso->perhab = $curso_hab_decode->perhab;
+        $curso->departamento()->associate($departamento);
+        $curso->save();
+
+        session()->flash('alert-success', 'Curso e Habilitação alterado com sucesso!');
+        return redirect()->route('cursos_hab.index');
+    }
 }

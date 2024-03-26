@@ -4,8 +4,9 @@
     <div class="card mb-5">
         <div class="card-header"><b>Cadastro Curso e Habilitação x Departamento de Ensino</b></div>
         <div class="card-body">
-            <form action="{{route('cursos_hab.update')}}" method="POST">
+            <form action="{{route('cursos_hab.update', $curso->id)}}" method="POST">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
                     <label><b>Curso / Habilitação / Período da Habilitação</b></label>
                     <select name="curso_hab" class="curso_hab form-control" required>
@@ -33,4 +34,26 @@
         </div>
     </div>
 
+@endsection
+
+@section('javascripts_bottom')
+    <script>
+        $(document).ready(function(){
+            $('.curso_hab').select2({
+                theme: 'bootstrap4',
+                language: 'pt-BR'
+            });
+
+            $('.departamento_ensino').select2({
+                theme: 'bootstrap4',
+                language: 'pt-BR'
+            });
+        });
+
+        // coloca o focus no select2
+        // https://stackoverflow.com/questions/25882999/set-focus-to-search-text-field-when-we-click-on-select-2-drop-down
+         $(document).on('select2:open', () => {
+            document.querySelector('.select2-search__field').focus();
+        });
+    </script>
 @endsection
