@@ -19,7 +19,7 @@
                     <td>{{$curso->codcur . " " . $curso->nomcur}} / {{$curso->codhab . " " . $curso->nomhab}} / {{$curso->perhab}}</td>
                     <td>{{$curso->departamento->nomabvset}}</td>
                     <td>
-                        <a href="#" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="{{route('cursos_hab.edit', $curso->id)}}" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
                         <form method="POST" style="width:42px;" class="float-left col-auto" action="#">
                             @csrf 
                             @method('delete')

@@ -62,4 +62,15 @@ class CursoHabilitacaoController extends Controller
         session()->flash('alert-success', 'Curso e Habilitação cadastrado no departamento com sucesso!');
         return redirect()->route('cursos_hab.index');
     }
+
+    public function edit(CursoHabilitacao $curso){
+        $cursos_hab = Graduacao::obterCursosHabilitacoes(getenv('REPLICADO_CODUNDCLG'));
+        $departamentos_ensino = Graduacao::listarDepartamentosDeEnsino();
+
+        return view('cursos_hab.edit')->with([
+            'curso' => $curso,
+            'cursos_hab' => $cursos_hab,
+            'departamentos_ensino' => $departamentos_ensino,
+        ]);
+    }
 }
