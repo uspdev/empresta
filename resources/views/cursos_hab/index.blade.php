@@ -31,10 +31,11 @@
         </div>
     </div>
 
-    <table class="table table-striped" id="cursos_cadastrados">
+    <h3>Lista de Cursos Cadastrados</h3>
+    <table class="table table-striped table-bordered" id="cursos_cadastrados">
         <thead>
             <tr>
-                <th>Curso/Habilitação</th>
+                <th>Curso / Habilitação / Período da Habilitação</th>
                 <th>Departamento</th>
                 <th>Ações</th>
             </tr>
@@ -42,9 +43,16 @@
         <tbody>
             @forelse ($cursos_cadastrados as $curso)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$curso->codcur . " " . $curso->nomcur}} / {{$curso->codhab . " " . $curso->nomhab}} / {{$curso->perhab}}</td>
+                    <td>{{$curso->departamento->nomabvset}}</td>
+                    <td>
+                        <a href="#" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
+                        <form method="POST" style="width:42px;" class="float-left col-auto" action="#">
+                            @csrf 
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr>

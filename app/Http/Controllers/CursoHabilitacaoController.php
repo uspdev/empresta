@@ -17,10 +17,12 @@ class CursoHabilitacaoController extends Controller
         $cursos_hab = Graduacao::obterCursosHabilitacoes(getenv('REPLICADO_CODUNDCLG'));
         $departamentos_ensino = Graduacao::listarDepartamentosDeEnsino();
 
+        $cursos_cadastrados = CursoHabilitacao::all();
+
         return view('cursos_hab.index')->with([
             'cursos_hab' => $cursos_hab,
             'departamentos_ensino' => $departamentos_ensino,
-            'cursos_cadastrados' => array()
+            'cursos_cadastrados' => $cursos_cadastrados->isEmpty() ? array() : $cursos_cadastrados
         ]);
     }
 
