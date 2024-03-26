@@ -99,4 +99,10 @@ class CursoHabilitacaoController extends Controller
         session()->flash('alert-success', 'Curso e Habilitação alterado com sucesso!');
         return redirect()->route('cursos_hab.index');
     }
+
+    public function destroy(CursoHabilitacao $curso){
+        $curso->delete();
+        session()->flash('alert-success', 'Curso e Habilitação excluído com sucesso!');
+        return redirect()->route('cursos_hab.index');
+    }
 }

@@ -20,7 +20,7 @@
                     <td>{{$curso->departamento->nomabvset}}</td>
                     <td>
                         <a href="{{route('cursos_hab.edit', $curso->id)}}" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
-                        <form method="POST" style="width:42px;" class="float-left col-auto" action="#">
+                        <form method="POST" style="width:42px;" class="float-left col-auto" action="{{route('cursos_hab.destroy', $curso->id)}}">
                             @csrf 
                             @method('delete')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja apagar?')"><i class="fas fa-trash-alt"></i></button>
