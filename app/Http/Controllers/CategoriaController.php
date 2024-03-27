@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoriaRequest;
+use App\Models\Departamento;
 use App\Models\Material;
+use App\Models\Vinculo;
 use PDF;
 use \Picqer\Barcode\BarcodeGeneratorPNG;
+use Uspdev\Replicado\Estrutura;
 
 class CategoriaController extends Controller
 {
@@ -39,9 +42,15 @@ class CategoriaController extends Controller
     public function create()
     {
         $this->authorize('admin');
-        $categoria = new Categoria;
-        return view('categorias.create')->with('categoria', $categoria);
-
+        
+        return view('categorias.create')->with([
+            'categoria' => new Categoria,
+            'setores' => Estrutura::listarSetores(),
+            'vinculos' => Vinculo::all(),
+            'departamentos' => Departamento::all(),
+            'vinculos_permitidos' => array(),
+            'setores_permitidos' => array()
+        ]);
     }
 
     /**
