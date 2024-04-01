@@ -14,7 +14,7 @@
     <label><b>Departamentos de Ensino Permitidos</b></label>
     <select name="departamentos_permitidos[]" class="form-control" multiple="multiple" id="departamentos_permitidos">
         @foreach ($departamentos as $departamento)
-            <option value="{{$departamento->codset}}" {{in_array($departamento->codset, $vinculos_permitidos) ? 'selected' : ''}}>{{$departamento->nomabvset}}</option>
+            <option value="{{$departamento->id}}" {{in_array($departamento->id, $departamentos_permitidos) ? 'selected' : ''}}>{{$departamento->nomabvset}}</option>
         @endforeach
     </select>
 
@@ -23,7 +23,7 @@
     <select name="setores_permitidos[]" class="form-control" multiple="multiple" id="setores_permitidos">
         @foreach ($setores as $setor)
             @php $siglaSetor = explode('-', $setor['nomabvset'])[0]; @endphp
-            <option value="{{strtolower($siglaSetor)}}" {{in_array(strtolower($siglaSetor), $setores_permitidos) ? 'selected' : ''}}>{{$setor['nomset']}} - {{$siglaSetor}}</option>
+            <option value='{"codset": {{$setor['codset']}}, "nomabvset": "{{$siglaSetor}}", "nomset": "{{$setor['nomset']}}"}' {{in_array(strtolower($siglaSetor), $setores_permitidos) ? 'selected' : ''}}>{{$setor['nomset']}} - {{$siglaSetor}}</option>
         @endforeach
     </select>
 </div>

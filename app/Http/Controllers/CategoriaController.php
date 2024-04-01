@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriaRequest;
 use App\Models\Departamento;
 use App\Models\Material;
+use App\Models\Setor;
 use App\Models\Vinculo;
 use PDF;
 use \Picqer\Barcode\BarcodeGeneratorPNG;
@@ -43,12 +44,18 @@ class CategoriaController extends Controller
     {
         $this->authorize('admin');
         
+        // Somente os setores que não são departamentos de ensino.
+        $setores = array_filter(Estrutura::listarSetores(), function($arg){
+            return $arg['tipset'] != 'Departamento de Ensino';
+        });
+
         return view('categorias.create')->with([
             'categoria' => new Categoria,
-            'setores' => Estrutura::listarSetores(),
+            'setores' => $setores,
             'vinculos' => Vinculo::all(),
             'departamentos' => Departamento::all(),
             'vinculos_permitidos' => array(),
+            'departamentos_permitidos' => array(),
             'setores_permitidos' => array()
         ]);
     }
@@ -64,6 +71,38 @@ class CategoriaController extends Controller
         $this->authorize('admin');
         $validated = $request->validated();
         $categoria = Categoria::create($validated);
+
+        $vinculos_permitidos = $request->input('vinculos_permitidos');
+        $departamentos_permitidos = $request->input('departamentos_permitidos');
+        $setores_permitidos = $request->input('setores_permitidos');
+
+        if(!is_null($vinculos_permitidos)){
+            foreach($vinculos_permitidos as $vinculo_permission){
+                $vinculo = Vinculo::firstWhere('permission', $vinculo_permission);
+
+                $categoria->vinculos()->attach($vinculo);
+            }
+        }
+
+        if(!is_null($departamentos_permitidos)){
+            foreach($departamentos_permitidos as $departamento){
+                $categoria->departamentos()->attach(Departamento::find($departamento));
+            }
+        }
+
+        if(!is_null($setores_permitidos)){
+            foreach($setores_permitidos as $setor_permission){
+                $setor_json = json_decode($setor_permission);
+
+                $setor = Setor::firstOrCreate(
+                    ['codset' => $setor_json->codset],
+                    ['nomabvset' => $setor_json->nomabvset, 'nomset' => $setor_json->nomset, 'permission' => strtolower($setor_json->nomabvset)]
+                );
+
+                $categoria->setores()->attach($setor);
+            }
+        }
+
         return redirect("categorias/$categoria->id");
     }
 

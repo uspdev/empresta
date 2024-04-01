@@ -12,6 +12,8 @@ class Setor extends Model
 
     protected $table = 'setores';
 
+    protected $guarded = ['id'];
+
     public function categorias(): BelongsToMany
     {
         return $this->belongsToMany(Categoria::class);
