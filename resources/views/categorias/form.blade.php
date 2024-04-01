@@ -23,7 +23,7 @@
     <select name="setores_permitidos[]" class="form-control" multiple="multiple" id="setores_permitidos">
         @foreach ($setores as $setor)
             @php $siglaSetor = explode('-', $setor['nomabvset'])[0]; @endphp
-            <option value='{"codset": {{$setor['codset']}}, "nomabvset": "{{$siglaSetor}}", "nomset": "{{$setor['nomset']}}"}' {{in_array(strtolower($siglaSetor), $setores_permitidos) ? 'selected' : ''}}>{{$setor['nomset']}} - {{$siglaSetor}}</option>
+            <option value='{"codset": {{$setor['codset']}}, "nomabvset": "{{$siglaSetor}}", "nomset": "{{$setor['nomset']}}"}' {{in_array($setor['codset'], $setores_permitidos) ? 'selected' : ''}}>{{$setor['nomset']}} - {{$siglaSetor}}</option>
         @endforeach
     </select>
 </div>
