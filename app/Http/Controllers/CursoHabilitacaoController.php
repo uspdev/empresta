@@ -83,17 +83,17 @@ class CursoHabilitacaoController extends Controller
         $curso_hab_decode = json_decode($validated['curso_hab']);
         $departamento_decode = json_decode($validated['departamento_ensino']);
 
-        $departamento = Departamento::firstOrCreate([
-            'codset' => $departamento_decode->codset,
-            'nomabvset' => $departamento_decode->nomabvset
-        ]);
+        $departamento = Setor::firstOrCreate(
+            ['codset' => $departamento_decode->codset],
+            ['nomabvset' => $departamento_decode->nomabvset, 'nomset' => $departamento_decode->nomset]
+        );
 
         $curso->codcur = $curso_hab_decode->codcur;
         $curso->nomcur = $curso_hab_decode->nomcur;
         $curso->codhab = $curso_hab_decode->codhab;
         $curso->nomhab = $curso_hab_decode->nomhab;
         $curso->perhab = $curso_hab_decode->perhab;
-        $curso->departamento()->associate($departamento);
+        $curso->setor()->associate($departamento);
         $curso->save();
 
         session()->flash('alert-success', 'Curso e Habilitação alterado com sucesso!');
