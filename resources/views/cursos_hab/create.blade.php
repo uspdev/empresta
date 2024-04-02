@@ -20,7 +20,7 @@
                     <label><b>Departamento de Ensino</b></label>
                     <select name="departamento_ensino" class="departamento_ensino form-control" required>
                         @foreach ($departamentos_ensino as $departamento_ensino)
-                            <option value='{"codset": {{$departamento_ensino['codset']}}, "nomabvset": "{{$departamento_ensino['nomabvset']}}"}'>{{$departamento_ensino['nomabvset']}}</option>
+                            <option value='{"codset": {{$departamento_ensino['codset']}}, "nomabvset": "{{$departamento_ensino['nomabvset']}}", "nomset": "{{$departamento_ensino['nomset']}}"}'>{{$departamento_ensino['nomabvset']}}</option>
                         @endforeach
                     </select>
                 </div>

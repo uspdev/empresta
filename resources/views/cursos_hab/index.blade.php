@@ -17,7 +17,7 @@
             @forelse ($cursos_cadastrados as $curso)
                 <tr>
                     <td>{{$curso->codcur . " " . $curso->nomcur}} / {{$curso->codhab . " " . $curso->nomhab}} / {{$curso->perhab}}</td>
-                    <td>{{$curso->departamento->nomabvset}}</td>
+                    <td>{{$curso->setor->nomabvset}}</td>
                     <td>
                         <a href="{{route('cursos_hab.edit', $curso->id)}}" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
                         <form method="POST" style="width:42px;" class="float-left col-auto" action="{{route('cursos_hab.destroy', $curso->id)}}">

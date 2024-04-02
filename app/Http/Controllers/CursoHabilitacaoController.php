@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CursoHabilitacao;
-use App\Models\Departamento;
+use App\Models\Setor;
 use Illuminate\Http\Request;
 use Uspdev\Replicado\Graduacao;
 
@@ -45,10 +45,10 @@ class CursoHabilitacaoController extends Controller
             return back();
         }
 
-        $departamento = Departamento::firstOrCreate([
-            'codset' => $departamento_decode->codset,
-            'nomabvset' => $departamento_decode->nomabvset
-        ]);
+        $setor = Setor::firstOrCreate(
+            ['codset' => $departamento_decode->codset],
+            ['nomabvset' => $departamento_decode->nomabvset, 'nomset' => $departamento_decode->nomset]
+        );
 
         $curso_hab = new CursoHabilitacao();
         $curso_hab->codcur = $curso_hab_decode->codcur;
@@ -56,7 +56,7 @@ class CursoHabilitacaoController extends Controller
         $curso_hab->codhab = $curso_hab_decode->codhab;
         $curso_hab->nomhab = $curso_hab_decode->nomhab;
         $curso_hab->perhab = $curso_hab_decode->perhab;
-        $curso_hab->departamento()->associate($departamento);
+        $curso_hab->setor()->associate($setor);
         $curso_hab->save();
 
         session()->flash('alert-success', 'Curso e Habilitação cadastrado no departamento com sucesso!');
