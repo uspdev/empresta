@@ -26,9 +26,4 @@ class Categoria extends Model
     {
         return $this->belongsToMany(Setor::class);
     }
-
-    public function departamentos(): BelongsToMany
-    {
-        return $this->belongsToMany(Departamento::class);
-    }
 }

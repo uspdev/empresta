@@ -12,8 +12,8 @@ class CursoHabilitacao extends Model
 
     protected $table = 'cursos_habilitacoes';
 
-    public function departamento(): BelongsTo
+    public function setor(): BelongsTo
     {
-        return $this->belongsTo(Departamento::class);
+        return $this->belongsTo(Setor::class);
     }
 }
