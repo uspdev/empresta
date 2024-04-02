@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('vinculos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('permission');
             $table->timestamps();
         });
-
 
         $permissoesVinculo = [
             'Aluno Convênoi Interc Grad' => 'Alunoconvenioint',
@@ -34,8 +32,7 @@ return new class extends Migration
 
         foreach($permissoesVinculo as $nome => $permission){
             \App\Models\Vinculo::create([
-                'nome' => $nome,
-                'permission' => $permission
+                'nome' => $nome
             ]);
         }
     }

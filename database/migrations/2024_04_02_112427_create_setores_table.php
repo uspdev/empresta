@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categoria_departamento', function (Blueprint $table) {
+        Schema::create('setores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categoria_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('departamento_id')->constrained('departamentos_de_ensino')->cascadeOnDelete();
+            $table->integer('codset');
+            $table->string('nomabvset');
+            $table->string('nomset');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria_departamento');
+        Schema::dropIfExists('setores');
     }
 };
