@@ -1,6 +1,7 @@
 @extends('laravel-usp-theme::master')
 
 @section('content')
+    @include('flash')
     <div class="card mb-5">
         <div class="card-header"><b>Cadastro Curso e Habilitação x Departamento de Ensino</b></div>
         <div class="card-body">
@@ -10,6 +11,7 @@
                 <div class="form-group">
                     <label><b>Curso / Habilitação / Período da Habilitação</b></label>
                     <select name="curso_hab" class="curso_hab form-control" required>
+                        <option></option>
                         @foreach ($cursos_hab as $curso_hab)
                             <option value='{"codcur": {{$curso_hab['codcur']}}, "codhab": {{$curso_hab['codhab']}}, "nomcur": "{{$curso_hab['nomcur']}}", "nomhab": "{{$curso_hab['nomhab']}}", "perhab": "{{$curso_hab['perhab']}}"}' {{$curso_hab['codcur'] == $curso->codcur && $curso_hab['codhab'] == $curso->codhab ? 'selected': ''}}>{{$curso_hab['codcur'] . " " . $curso_hab['nomcur']}} / {{$curso_hab['codhab'] . " " . $curso_hab['nomhab']}} / {{$curso_hab['perhab']}}</option>
                         @endforeach
@@ -20,8 +22,9 @@
                 <div class="form-group">
                     <label><b>Departamento de Ensino</b></label>
                     <select name="departamento_ensino" class="departamento_ensino form-control" required>
+                        <option></option>
                         @foreach ($departamentos_ensino as $departamento_ensino)
-                            <option value='{"codset": {{$departamento_ensino['codset']}}, "nomabvset": "{{$departamento_ensino['nomabvset']}}", "nomset": "{{$departamento_ensino['nomset']}}"}' {{$departamento_ensino['codset'] == $curso->setor->codset ? 'selected' :''}}>{{$departamento_ensino['nomabvset']}}</option>
+                            <option value='{"codset": {{$departamento_ensino['codset']}}, "nomabvset": "{{$departamento_ensino['nomabvset']}}", "nomset": "{{$departamento_ensino['nomset']}}"}' {{$departamento_ensino['codset'] == $curso->setor->codset ? 'selected' :''}}>{{$departamento_ensino['nomset']}} - {{$departamento_ensino['nomabvset']}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -36,24 +39,4 @@
 
 @endsection
 
-@section('javascripts_bottom')
-    <script>
-        $(document).ready(function(){
-            $('.curso_hab').select2({
-                theme: 'bootstrap4',
-                language: 'pt-BR'
-            });
-
-            $('.departamento_ensino').select2({
-                theme: 'bootstrap4',
-                language: 'pt-BR'
-            });
-        });
-
-        // coloca o focus no select2
-        // https://stackoverflow.com/questions/25882999/set-focus-to-search-text-field-when-we-click-on-select-2-drop-down
-         $(document).on('select2:open', () => {
-            document.querySelector('.select2-search__field').focus();
-        });
-    </script>
-@endsection
+@include('cursos_hab.partials.select2-cursos-hab-js')
