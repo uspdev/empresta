@@ -4,6 +4,9 @@
     @include('flash')
     <a href="{{route('cursos_hab.create')}}" class="btn btn-success mb-3">Cadastrar Curso e Habilitação x Departamento de Ensino</a>
 
+    <div class="alert alert-info"><b>Nota:</b> Este cadastro de curso se faz necessário para vincular os alunos de graduação à um departamento de ensino,
+        para que a restrição de setores nas categorias funcionem também para os alunos de graduação.</div>
+
     <h3>Lista de Cursos Cadastrados em Departamentos de Ensino</h3>
     <table class="table table-striped table-bordered" id="cursos_cadastrados">
         <thead>
