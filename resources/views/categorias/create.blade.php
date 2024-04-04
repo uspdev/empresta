@@ -14,3 +14,24 @@
 
 @endsection('content')
 
+
+@section('javascripts_bottom')
+<script>
+    $(document).ready(function(){
+        $('#vinculos_permitidos').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Todos'
+        });
+
+        $('#setores_permitidos').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Todos'
+        });
+
+        $('#departamentos_permitidos').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Todos'
+        });
+    });
+</script>
+@endsection
