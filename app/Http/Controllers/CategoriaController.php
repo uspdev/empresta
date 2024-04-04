@@ -6,8 +6,11 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoriaRequest;
 use App\Models\Material;
+use App\Models\Setor;
+use App\Models\Vinculo;
 use PDF;
 use \Picqer\Barcode\BarcodeGeneratorPNG;
+use Uspdev\Replicado\Estrutura;
 
 class CategoriaController extends Controller
 {
@@ -39,9 +42,14 @@ class CategoriaController extends Controller
     public function create()
     {
         $this->authorize('admin');
-        $categoria = new Categoria;
-        return view('categorias.create')->with('categoria', $categoria);
 
+        return view('categorias.create')->with([
+            'categoria' => new Categoria,
+            'setores' => Estrutura::listarSetores(),
+            'vinculos' => Vinculo::all(),
+            'vinculos_permitidos' => array(),
+            'setores_permitidos' => array()
+        ]);
     }
 
     /**
@@ -55,6 +63,31 @@ class CategoriaController extends Controller
         $this->authorize('admin');
         $validated = $request->validated();
         $categoria = Categoria::create($validated);
+
+        $vinculos_permitidos = $request->input('vinculos_permitidos');
+        $setores_permitidos = $request->input('setores_permitidos');
+
+        if(!is_null($vinculos_permitidos)){
+            foreach($vinculos_permitidos as $vinculo_id){
+                $vinculo = Vinculo::find($vinculo_id);
+
+                $categoria->vinculos()->attach($vinculo);
+            }
+        }
+
+        if(!is_null($setores_permitidos)){
+            foreach($setores_permitidos as $setor_permitido){
+                $setor_json = json_decode($setor_permitido);
+
+                $setor = Setor::firstOrCreate(
+                    ['codset' => $setor_json->codset],
+                    ['nomabvset' => $setor_json->nomabvset, 'nomset' => $setor_json->nomset]
+                );
+
+                $categoria->setores()->attach($setor);
+            }
+        }
+
         return redirect("categorias/$categoria->id");
     }
 
@@ -79,7 +112,14 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         $this->authorize('admin');
-        return view('categorias.edit')->with('categoria', $categoria);
+
+        return view('categorias.edit')->with([
+            'categoria' => $categoria,
+            'setores' => Estrutura::listarSetores(),
+            'vinculos' => Vinculo::all(),
+            'vinculos_permitidos' => $categoria->vinculos->pluck('id')->all(),
+            'setores_permitidos' => $categoria->setores->pluck('codset')->all()
+        ]);
     }
 
     /**
@@ -94,6 +134,33 @@ class CategoriaController extends Controller
         $this->authorize('admin');
         $validated = $request->validated();
         $categoria->update($validated);
+
+        $vinculos_permitidos = $request->input('vinculos_permitidos');
+        $setores_permitidos = $request->input('setores_permitidos');
+
+        $categoria->vinculos()->detach();
+        if(!is_null($vinculos_permitidos)){
+            foreach($vinculos_permitidos as $vinculo_id){
+                $vinculo = Vinculo::find($vinculo_id);
+
+                $categoria->vinculos()->attach($vinculo);
+            }
+        }
+
+        $categoria->setores()->detach();
+        if(!is_null($setores_permitidos)){
+            foreach($setores_permitidos as $setor_permitido){
+                $setor_json = json_decode($setor_permitido);
+
+                $setor = Setor::firstOrCreate(
+                    ['codset' => $setor_json->codset],
+                    ['nomabvset' => $setor_json->nomabvset, 'nomset' => $setor_json->nomset]
+                );
+
+                $categoria->setores()->attach($setor);
+            }
+        }
+
         return redirect("categorias/$categoria->id");
     }
 

@@ -138,6 +138,13 @@ $menu = [
 
 $right_menu = [
     [
+        'text' => '<span><i class="fa fa-cog"></i></span>',
+        'title' => 'Configurações',
+        'target' => '_blanck',
+        'url' => config('app.url').'/settings',
+        'can' => 'admin'
+    ],
+    [
         'key' => 'senhaunica-socialite',
     ],
     [

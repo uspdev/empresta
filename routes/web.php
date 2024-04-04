@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginInternController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CursoHabilitacaoController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 
 Route::get('/home', function () {
@@ -27,3 +29,7 @@ Route::resource('materials', MaterialController::class);
 Route::resource('visitantes', VisitanteController::class);
 Route::resource('emprestimos', EmprestimoController::class);
 Route::resource('users', UserController::class);
+
+Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+
+Route::resource('cursos_hab', CursoHabilitacaoController::class)->parameters(['cursos_hab' => 'curso']);

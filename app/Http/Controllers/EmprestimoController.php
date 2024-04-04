@@ -91,6 +91,13 @@ class EmprestimoController extends Controller
         }
 
         $material = Material::where('codigo', $validated['material_id'])->first();
+
+        // Verifica se a pessoa está autorizada a fazer o empréstimo por restrição de vínculo e setor da categoria.
+        if(Gate::denies('emprestar-material', [$material->categoria, $validated['username']])){
+            session()->flash('alert-danger', 'Esta pessoa não tem autorização para realizar empréstimos de materiais na categoria ' . $material->categoria->nome);
+            return redirect()->back();
+        }
+
         if($material){
 
             // Verifica se o material está ativo
