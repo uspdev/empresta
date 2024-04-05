@@ -36,30 +36,36 @@ class CursoHabilitacaoController extends Controller
             'curso_hab' => 'required',
             'departamento_ensino' => 'required',
         ]);
-        
-        $curso_hab_decode = json_decode($validated['curso_hab']);
+
         $departamento_decode = json_decode($validated['departamento_ensino']);
 
-        if(!is_null(CursoHabilitacao::where('codcur', $curso_hab_decode->codcur)->where('codhab', $curso_hab_decode->codhab)->first())){
-            session()->flash('alert-danger', 'Este curso e habilitação já estão cadastrados em um departamento!');
-            return back();
+        foreach ($validated['curso_hab'] as $curso_json) {
+            $curso_hab_decode = json_decode($curso_json);
+
+            if(!is_null(CursoHabilitacao::where('codcur', $curso_hab_decode->codcur)->where('codhab', $curso_hab_decode->codhab)->first())){
+                session()->flash('alert-danger', 'Este curso e habilitação já estão cadastrados em um departamento!');
+                return back();
+            }
+
+            $setor = Setor::firstOrCreate(
+                ['codset' => $departamento_decode->codset],
+                ['nomabvset' => $departamento_decode->nomabvset, 'nomset' => $departamento_decode->nomset]
+            );
+
+            $curso_hab = new CursoHabilitacao();
+            $curso_hab->codcur = $curso_hab_decode->codcur;
+            $curso_hab->nomcur = $curso_hab_decode->nomcur;
+            $curso_hab->codhab = $curso_hab_decode->codhab;
+            $curso_hab->nomhab = $curso_hab_decode->nomhab;
+            $curso_hab->perhab = $curso_hab_decode->perhab;
+            $curso_hab->setor()->associate($setor);
+            $curso_hab->save();
         }
 
-        $setor = Setor::firstOrCreate(
-            ['codset' => $departamento_decode->codset],
-            ['nomabvset' => $departamento_decode->nomabvset, 'nomset' => $departamento_decode->nomset]
-        );
-
-        $curso_hab = new CursoHabilitacao();
-        $curso_hab->codcur = $curso_hab_decode->codcur;
-        $curso_hab->nomcur = $curso_hab_decode->nomcur;
-        $curso_hab->codhab = $curso_hab_decode->codhab;
-        $curso_hab->nomhab = $curso_hab_decode->nomhab;
-        $curso_hab->perhab = $curso_hab_decode->perhab;
-        $curso_hab->setor()->associate($setor);
-        $curso_hab->save();
-
-        session()->flash('alert-success', 'Curso e Habilitação cadastrado no departamento com sucesso!');
+        if(count($validated['curso_hab']) > 1)
+            session()->flash('alert-success', 'Cursos e Habilitações cadastrados no departamento com sucesso!');
+        else 
+            session()->flash('alert-success', 'Curso e Habilitação cadastrado no departamento com sucesso!');
         return redirect()->route('cursos_hab.index');
     }
 

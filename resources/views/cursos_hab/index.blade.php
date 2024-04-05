@@ -6,11 +6,11 @@
 
     <div class="alert alert-info"><b>Nota:</b> Somente para vincular alunos de graduação à um departamento de ensino.</div>
 
-    <h3>Lista de Cursos Cadastrados em Departamentos de Ensino</h3>
+    <h3>Cursos e Habilitações x Departamentos de Ensino</h3>
     <table class="table table-striped table-bordered" id="cursos_cadastrados">
         <thead>
             <tr>
-                <th>Curso / Habilitação / Período da Habilitação</th>
+                <th>Codcur / Codhab / Curso / Habilitação / Período da Habilitação</th>
                 <th>Departamento</th>
                 <th>Ações</th>
             </tr>
@@ -18,7 +18,7 @@
         <tbody>
             @forelse ($cursos_cadastrados as $curso)
                 <tr>
-                    <td>{{$curso->codcur . " " . $curso->nomcur}} / {{$curso->codhab . " " . $curso->nomhab}} / {{$curso->perhab}}</td>
+                    <td>{{$curso->codcur}} / {{$curso->codhab}} / {{$curso->nomcur}} / {{$curso->nomhab}} / {{$curso->perhab}}</td>
                     <td>{{$curso->setor->nomabvset}}</td>
                     <td>
                         <a href="{{route('cursos_hab.edit', $curso->id)}}" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>
