@@ -12,7 +12,8 @@ use App\Http\Controllers\UserController;
 
 Route::get('/home', function () {
     return redirect()->route('emprestimos.index');
-});
+})->name('home');
+
 Route::get('/', [LoginInternController::class, 'showLoginForm'])->name('show_login_intern');
 Route::post('/', [LoginInternController::class, 'login'])->name('login_intern');
 
