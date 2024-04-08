@@ -14,3 +14,17 @@
 
 @endsection('content')
 
+@section('javascripts_bottom')
+<script>
+    $(document).ready(function() {
+        $('input[type=radio][name=devolucao]').change(function(){
+            if($(this).val() == 1){
+                $('#prazo-devolucao').removeClass('d-none');
+            }
+            else{
+                $('#prazo-devolucao').addClass('d-none');
+            }
+        });
+    });
+</script>
+@endsection

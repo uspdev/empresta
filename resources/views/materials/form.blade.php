@@ -29,7 +29,7 @@
 <div class="form-group">
     <label for="descricao"><b>Ativo?</b></label>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="ativo" id="sim" value="1" @if($material->ativo == 1 or Request()->ativo == 1)) checked @endif>
+        <input class="form-check-input" type="radio" name="ativo" id="sim" value="1" @if($material->ativo == 1 or Request()->ativo == 1) checked @endif>
         <label class="form-check-label" for="sim">
             Sim
         </label>
@@ -40,6 +40,21 @@
             Não
         </label>
     </div>   
+</div>
+<div class="form-group">
+    <label><b>Prazo de devolucao?</b></label>
+    <div class="form-check">
+        <input value="1" class="form-check-input" type="radio" name="devolucao" id="devolucao-sim" @checked($material->devolucao)>
+        <label for="devolucao-sim">Sim</label>
+    </div>
+    <div class="form-check">
+        <input value="0" class="form-check-input" type="radio" name="devolucao" id="devolucao-nao" checked>
+        <label for="devolucao-nao">Não</label>
+    </div>
+</div>
+<div class="form-group d-none" id="prazo-devolucao">
+    <label for="prazo"><b>Prazo de devolucao</b></label>
+    <input type="number" min="2" placeholder="Mínimo de 2 dias de prazo" class="form-control">
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button> 
