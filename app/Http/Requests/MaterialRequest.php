@@ -30,7 +30,12 @@ class MaterialRequest extends FormRequest
             'codigo' => ['required', 'min:3'],
             'categoria_id' => 'required',
             'descricao' => 'required',
+            'devolucao' => 'required'
         ];
+
+        if($this->input('devolucao') == 1)
+            $rules['prazo'] = 'required|integer|min:2';
+
         if ($this->method() == 'PATCH' || $this->method() == 'PUT'){
             array_push($rules['codigo'], 'unique:materials,codigo,'.$this->material->id);
 
