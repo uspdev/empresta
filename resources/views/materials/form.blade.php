@@ -55,6 +55,10 @@
 <div @if($material->devolucao) class="form-group" @else  class="form-group d-none" @endif id="prazo-devolucao">
     <label><b>Prazo de devolucao</b></label>
     <input name="prazo" min="2" type="number" placeholder="Mínimo de 2 dias de prazo" class="form-control" value="{{$material->prazo}}">
+    <div class="form-check mt-2">
+        <input value="1" class="form-check-input" type="checkbox" name="dias_da_semana" id="dias_da_semana" @checked($material->dias_da_semana)>
+        <label class="form-check-label text-secondary" for="dias_da_semana">Considerar apenas dias da semana</label>
+    </div>
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button> 

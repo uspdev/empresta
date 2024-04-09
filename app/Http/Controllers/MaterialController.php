@@ -51,6 +51,7 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
         $validated = $request->validated();
+        $validated['dias_da_semana'] = (int) !is_null($request->input('dias_da_semana'));
         $validated['created_by_id']= auth()->user()->id;
         $material = Material::create($validated);
         return redirect("materials/$material->id");
@@ -88,6 +89,7 @@ class MaterialController extends Controller
     public function update(MaterialRequest $request, Material $material)
     {
         $validated = $request->validated();
+        $validated['dias_da_semana'] = (int) !is_null($request->input('dias_da_semana'));
         $material->update($validated);
         return redirect("materials/$material->id");
     }
