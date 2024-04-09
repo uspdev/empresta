@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('materials', function (Blueprint $table) {
             $table->tinyInteger('devolucao')->default(0);
             $table->integer('prazo')->nullable();
+            $table->tinyInteger('dias_da_semana')->default(0);
         });
     }
 
@@ -25,6 +26,7 @@ return new class extends Migration
         Schema::table('materials', function (Blueprint $table) {
             $table->dropColumn('devolucao');
             $table->dropColumn('prazo');
+            $table->dropColumn('dias_da_semana');
         });
     }
 };
