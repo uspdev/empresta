@@ -23,7 +23,20 @@
         </thead>
         <tbody>
         @foreach($emprestimos as $emprestimo)
-            <tr>
+            @php
+                $atrasado = 0;
+                if ($emprestimo->material->devolucao) {
+                    
+                    if ($emprestimo->material->dias_da_semana ) 
+                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' weekdays'));
+                    else 
+                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' days'));
+
+                    $atrasado = $data_devolucao < now();
+                }
+            @endphp
+
+            <tr @if($atrasado) style="background-color: rgba(255, 0, 0, 0.2)"@endif>
                 <td>{{ $emprestimo->material->codigo }}</td>
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
