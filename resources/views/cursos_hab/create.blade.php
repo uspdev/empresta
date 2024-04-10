@@ -28,9 +28,9 @@
                     </select>
                 </div>
 
-                <div class="d-flex justify-content-between">
+                <div>
                     <button class="btn btn-success">Enviar</button>
-                    <a href="{{route('cursos_hab.index')}}" class="btn btn-primary">Voltar</a>
+                    <a href="{{route('cursos_hab.index')}}" class="btn btn-primary ml-1">Voltar</a>
                 </div>
             </form>
         </div>
