@@ -44,7 +44,9 @@
 @section('javascripts_bottom')
     <script>
         $(document).ready(function(){
-            new DataTable('#cursos_cadastrados');
+            new DataTable('#cursos_cadastrados', {
+                order: [[1, 'asc']]
+            });
         });
     </script>
 @endsection

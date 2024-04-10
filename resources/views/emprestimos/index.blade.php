@@ -5,22 +5,10 @@
 
 @inject('pessoa','App\Utils\ReplicadoUtils')
 
-    <div class="card">
-        <div class="card-header"><b>Itens emprestados</b></div>
-        <div class="card-body">
-            <form method="GET" action="emprestimos">
-                <div class="row">
-                    <div class="col-sm" id="busca">
-                        <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
-                    </div>
-                    <div class=" col-auto">
-                        <button type="submit" class="btn btn-success">Buscar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <table class="table table-striped">
+    <h3 class="mb-3">Itens Emprestados</h3>
+    <input type="checkbox" name="com_prazo" id="com_prazo">
+    <label for="com_prazo">Somente itens com prazo de devolução</label>
+    <table class="table table-striped" id="itens-emprestados">
         <thead>
             <tr>
                 <th>Código</th>
@@ -52,7 +40,7 @@
                         <i class="fas fa-phone"></i> {{ $emprestimo->visitante->telefone }}
                     </td>    
                 @endif                
-                <td class="form-inline">
+                <td>
                     @include('emprestimos.partials.devolver-btn')
                     <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto ml-2"><i class="fa fa-eye"></i></a>
                 </td>

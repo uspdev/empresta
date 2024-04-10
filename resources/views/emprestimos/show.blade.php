@@ -6,7 +6,7 @@
 
   <h2>Empréstimo:<b> ({{ $emprestimo->material->categoria->nome }}) {{ $emprestimo->material->descricao }}</b></h2>
 
-  <div class="row">
+  <div class="row mb-3">
     <div class="col-md-8">
       <table class="table table-striped">
         <tbody>
