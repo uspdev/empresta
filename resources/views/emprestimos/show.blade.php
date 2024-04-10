@@ -3,6 +3,13 @@
 @section('content')
   @inject('pessoa','App\Utils\ReplicadoUtils')
   @include('flash')
+  @if ($emprestimo->material->devolucao && is_null($emprestimo->data_devolucao))
+    @if ($emprestimo->material->dias_da_semana)
+      <div class="alert alert-warning">Prazo de devolução até <b>{{date('d/m/Y', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' weekdays'))}}</b></div>
+    @else
+      <div class="alert alert-warning">Prazo de devolução até <b>{{date('d/m/Y', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' days'))}}</b></div>
+    @endif
+  @endif
 
   <h2>Empréstimo:<b> ({{ $emprestimo->material->categoria->nome }}) {{ $emprestimo->material->descricao }}</b></h2>
 
