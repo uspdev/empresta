@@ -16,8 +16,15 @@
           }
         })
 
-        new DataTable('#itens-emprestados', {
+        const table = new DataTable('#itens-emprestados', {
           order: [[3, 'desc']]
+        });
+
+        $('#com_prazo').change(function(){
+          if($(this).is(':checked'))
+            table.column(4).search('dias').draw();
+          else
+            table.column(4).search('').draw();
         });
       })
     </script>
