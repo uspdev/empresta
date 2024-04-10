@@ -28,6 +28,7 @@
                 <th>Código</th>
                 <th>Tipo</th>
                 <th>Descrição</th>
+                <th>Prazo de devolução</th>
                 <th>Ativo</th>
                 <th>Ações</th>
             </tr>
@@ -38,6 +39,7 @@
                 <td><a href="materials/{{$material->id}}">{{ $material->codigo }}</a></td>
                 <td>{{ $material->categoria->nome }}</td>
                 <td>{{ $material->descricao }}</td>
+                <td>{{$material->devolucao ? $material->prazo . ' dias ' . ($material->dias_da_semana ? 'semanais' : 'corridos') : 'Não possui'}}</td>
                 <td>{{ $material->ativo ? 'Sim' : 'Não' }}</td>
                 <td>
                     <a href="materials/{{$material->id}}/edit" class="btn btn-warning col-auto float-left"><i class="fas fa-pencil-alt"></i></a>

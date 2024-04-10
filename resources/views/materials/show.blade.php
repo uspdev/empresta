@@ -1,9 +1,6 @@
 @extends('laravel-usp-theme::master')
 
 @section('content')
-    @if ($material->devolucao)
-        <div class="alert alert-info">Este material possui restrição de devolução de até {{$material->prazo}} dias {{$material->dias_da_semana? 'semanais': 'corridos'}}.</div>
-    @endif
     <div class="row">
         <div class="col-sm">
             <div class="row float-left">
@@ -43,6 +40,10 @@
             <tr>
                 <th>Descrição</th>
                 <td>{{ $material->descricao }}</td>
+            </tr>            
+            <tr>
+                <th>Prazo de devolução</th>
+                <td>{{$material->devolucao ? $material->prazo . ' dias ' . ($material->dias_da_semana ? 'semanais' : 'corridos') : 'Não possui'}}</td>
             </tr>            
         </tbody>
     </table>
