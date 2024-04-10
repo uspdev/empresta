@@ -15,6 +15,7 @@
                 <th>Tipo</th>
                 <th>Descrição</th>
                 <th>Data do empréstimo</th>
+                <th>Prazo de devolução</th>
                 <th>Nº USP</th>
                 <th>Pessoa</td>
                 <th>Ver</th>
@@ -27,6 +28,7 @@
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i') }}</td>
+                <td>{{ $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos'): 'Não possui'}}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
                     <td> 
