@@ -62,5 +62,5 @@
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button> 
-    <a href="categorias" class="btn btn-primary ml-1">Voltar</a>
+    <a href="{{route('materials.index')}}" class="btn btn-primary ml-1">Voltar</a>
 </div> 

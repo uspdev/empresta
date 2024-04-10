@@ -43,5 +43,5 @@
             </tr>
         </tbody>
     </table>
-    <a href="categorias" class="btn btn-primary">Voltar</a>
+    <a href="{{route('visitantes.index')}}" class="btn btn-primary">Voltar</a>
 @endsection('content')

@@ -47,5 +47,5 @@
             </tr>            
         </tbody>
     </table>
-    <a href="categorias" class="btn btn-primary">Voltar</a>
+    <a href="{{url()->previous()}}" class="btn btn-primary">Voltar</a>
 @endsection('content')
