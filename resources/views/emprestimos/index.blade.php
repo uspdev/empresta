@@ -18,7 +18,7 @@
                 <th>Prazo de devolução</th>
                 <th>Nº USP</th>
                 <th>Pessoa</td>
-                <th>Ver</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +34,8 @@
 
                     $atrasado = $data_devolucao < now();
                 }
+
+                $prazo_de_devolucao =  $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos') . ($atrasado ? "<br><b>" .  Carbon\Carbon::parse($data_devolucao)->format('d/m/Y') . "</b>" : ''): 'Não possui';
             @endphp
 
             <tr @if($atrasado) style="background-color: rgba(255, 0, 0, 0.2)"@endif>
@@ -41,7 +43,7 @@
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i') }}</td>
-                <td>{{ $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos'): 'Não possui'}}</td>
+                <td>{!! $prazo_de_devolucao !!}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
                     <td> 
