@@ -26,7 +26,8 @@ Route::post('emprestimos/devolver', [EmprestimoController::class,'devolver'])->n
 Route::get('categorias/barcode', [CategoriaController::class,'barcode'])->name('categorias.barcode');
 Route::post('categorias/barcodes', [CategoriaController::class,'barcodes'])->name('categorias.barcodes');
 Route::resource('categorias', CategoriaController::class);
-Route::resource('materials', MaterialController::class);
+Route::get('materials/create/{categoria?}', [MaterialController::class, 'create'])->name('materials.create');
+Route::resource('materials', MaterialController::class)->except('create');
 Route::resource('visitantes', VisitanteController::class);
 Route::resource('emprestimos', EmprestimoController::class);
 Route::resource('users', UserController::class);

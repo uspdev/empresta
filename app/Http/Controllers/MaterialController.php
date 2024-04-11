@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Http\Requests\MaterialRequest;
+use App\Models\Categoria;
 
 class MaterialController extends Controller
 {
@@ -36,9 +37,10 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Categoria $categoria = null)
     {
         $material = new Material;
+        if(!is_null($categoria)) $material->categoria()->associate($categoria);
         return view('materials.create')->with('material', $material);
     }
 
