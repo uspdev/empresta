@@ -40,7 +40,7 @@ Route::get('settings', [SettingsController::class, 'index'])->name('settings.ind
 Route::resource('cursos_hab', CursoHabilitacaoController::class)->parameters(['cursos_hab' => 'curso']);
 
 Route::get('mail', function(){
-    $emprestimo = Emprestimo::find(13);
+    $emprestimo = Emprestimo::find(1);
 
-    return new MaterialEmprestado($emprestimo);
+    return new MaterialDevolvido($emprestimo);
 });
