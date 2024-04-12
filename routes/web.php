@@ -9,6 +9,9 @@ use App\Http\Controllers\VisitanteController;
 use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Mail\MaterialDevolvido;
+use App\Mail\MaterialEmprestado;
+use App\Models\Emprestimo;
 
 Route::get('/home', function () {
     return redirect()->route('emprestimos.index');
@@ -35,3 +38,9 @@ Route::resource('users', UserController::class);
 Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 
 Route::resource('cursos_hab', CursoHabilitacaoController::class)->parameters(['cursos_hab' => 'curso']);
+
+Route::get('mail', function(){
+    $emprestimo = Emprestimo::find(13);
+
+    return new MaterialEmprestado($emprestimo);
+});
