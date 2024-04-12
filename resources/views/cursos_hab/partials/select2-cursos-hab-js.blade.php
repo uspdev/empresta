@@ -17,8 +17,10 @@
 
         // coloca o focus no select2
         // https://stackoverflow.com/questions/25882999/set-focus-to-search-text-field-when-we-click-on-select-2-drop-down
-         $(document).on('select2:open', () => {
-            document.querySelector('.select2-search__field').focus();
+         $(document).on('select2:open', (e) => {
+            document.querySelectorAll('.select2-search__field').forEach(element => {
+                element.focus();
+            });
         });
     </script>
 @endsection

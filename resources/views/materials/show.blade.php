@@ -41,7 +41,11 @@
                 <th>Descrição</th>
                 <td>{{ $material->descricao }}</td>
             </tr>            
+            <tr>
+                <th>Prazo de devolução</th>
+                <td>{{$material->devolucao ? $material->prazo . ' dias ' . ($material->dias_da_semana ? 'semanais' : 'corridos') : 'Não possui'}}</td>
+            </tr>            
         </tbody>
     </table>
-    <a href="categorias" class="btn btn-primary">Voltar</a>
+    <a href="{{url()->previous()}}" class="btn btn-primary">Voltar</a>
 @endsection('content')

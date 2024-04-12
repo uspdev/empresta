@@ -5,40 +5,45 @@
 
 @inject('pessoa','App\Utils\ReplicadoUtils')
 
-    <div class="card">
-        <div class="card-header"><b>Itens emprestados</b></div>
-        <div class="card-body">
-            <form method="GET" action="emprestimos">
-                <div class="row">
-                    <div class="col-sm" id="busca">
-                        <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Digite o código do material">
-                    </div>
-                    <div class=" col-auto">
-                        <button type="submit" class="btn btn-success">Buscar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <table class="table table-striped">
+    <h3 class="mb-3">Itens Emprestados</h3>
+    <input type="checkbox" name="com_prazo" id="com_prazo">
+    <label for="com_prazo">Somente itens com prazo de devolução</label>
+    <table class="table table-striped" id="itens-emprestados">
         <thead>
             <tr>
                 <th>Código</th>
                 <th>Tipo</th>
                 <th>Descrição</th>
                 <th>Data do empréstimo</th>
+                <th>Prazo de devolução</th>
                 <th>Nº USP</th>
                 <th>Pessoa</td>
-                <th>Ver</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
         @foreach($emprestimos as $emprestimo)
-            <tr>
+            @php
+                $atrasado = 0;
+                if ($emprestimo->material->devolucao) {
+                    
+                    if ($emprestimo->material->dias_da_semana ) 
+                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' weekdays'));
+                    else 
+                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' days'));
+
+                    $atrasado = $data_devolucao < now();
+                }
+
+                $prazo_de_devolucao =  $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos') . ($atrasado ? "<br><b>" .  Carbon\Carbon::parse($data_devolucao)->format('d/m/Y') . "</b>" : ''): 'Não possui';
+            @endphp
+
+            <tr @if($atrasado) class="table-danger" @endif>
                 <td>{{ $emprestimo->material->codigo }}</td>
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
                 <td>{{ Carbon\Carbon::parse($emprestimo->data_emprestimo)->format('d/m/Y H:i') }}</td>
+                <td>{!! $prazo_de_devolucao !!}</td>
                 @if($emprestimo->visitante_id == null)
                     <td>{{ $emprestimo->username }}</td>    
                     <td> 
@@ -52,7 +57,7 @@
                         <i class="fas fa-phone"></i> {{ $emprestimo->visitante->telefone }}
                     </td>    
                 @endif                
-                <td class="form-inline">
+                <td>
                     @include('emprestimos.partials.devolver-btn')
                     <a href="emprestimos/{{$emprestimo->id}}" class="btn btn-primary col-auto ml-2"><i class="fa fa-eye"></i></a>
                 </td>

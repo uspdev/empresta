@@ -29,8 +29,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <a href="home" class="btn btn-primary float-right">Voltar</a>
-                        <button type="submit" class="btn btn-success float-left">Enviar</button> 
+                        <button type="submit" class="btn btn-success">Enviar</button> 
+                        <a href="home" class="btn btn-primary ml-1">Voltar</a>
                     </div> 
                 </div> 
             </form>

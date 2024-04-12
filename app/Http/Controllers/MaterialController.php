@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Http\Requests\MaterialRequest;
+use App\Models\Categoria;
 
 class MaterialController extends Controller
 {
@@ -36,9 +37,10 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Categoria $categoria = null)
     {
         $material = new Material;
+        if(!is_null($categoria)) $material->categoria()->associate($categoria);
         return view('materials.create')->with('material', $material);
     }
 
@@ -51,6 +53,7 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
         $validated = $request->validated();
+        $validated['dias_da_semana'] = (int) !is_null($request->input('dias_da_semana'));
         $validated['created_by_id']= auth()->user()->id;
         $material = Material::create($validated);
         return redirect("materials/$material->id");
@@ -88,6 +91,7 @@ class MaterialController extends Controller
     public function update(MaterialRequest $request, Material $material)
     {
         $validated = $request->validated();
+        $validated['dias_da_semana'] = (int) !is_null($request->input('dias_da_semana'));
         $material->update($validated);
         return redirect("materials/$material->id");
     }

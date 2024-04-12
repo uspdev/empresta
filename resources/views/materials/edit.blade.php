@@ -15,3 +15,6 @@
 
 @endsection('content')
 
+@section('javascripts_bottom')
+    @include('materials.partials.prazo-de-devolucao-js')
+@endsection

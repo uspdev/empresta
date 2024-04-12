@@ -13,6 +13,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success float-left">Enviar</button> 
+                    <a href="{{route('home')}}" class="btn btn-primary ml-2">Voltar</a>
                 </div> 
             </form>
         </div>
