@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoRequest;
+use App\Mail\MaterialEmprestado;
 use Carbon\Carbon;
 use App\Models\Material;
 use Uspdev\Wsfoto;
 use Uspdev\Replicado\Pessoa;
 use App\Utils\ReplicadoUtils;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class EmprestimoController extends Controller
 {
@@ -92,13 +94,13 @@ class EmprestimoController extends Controller
 
         $material = Material::where('codigo', $validated['material_id'])->first();
 
-        // Verifica se a pessoa está autorizada a fazer o empréstimo por restrição de vínculo e setor da categoria.
-        if(Gate::denies('emprestar-material', [$material->categoria, $validated['username']])){
-            session()->flash('alert-danger', 'Esta pessoa não tem autorização para realizar empréstimos de materiais na categoria ' . $material->categoria->nome);
-            return redirect()->back();
-        }
-
         if($material){
+
+            // Verifica se a pessoa está autorizada a fazer o empréstimo por restrição de vínculo e setor da categoria.
+            if(Gate::denies('emprestar-material', [$material->categoria, $validated['username']])){
+                session()->flash('alert-danger', 'Esta pessoa não tem autorização para realizar empréstimos de materiais na categoria ' . $material->categoria->nome);
+                return redirect()->back();
+            }
 
             // Verifica se o material está ativo
             if($material->ativo != 1){
@@ -143,6 +145,13 @@ class EmprestimoController extends Controller
         } else {
             $request->session()->flash('alert-danger', 'Item não encontrado');
             return redirect()->back();
+        }
+
+        $solicitante_email = Pessoa::email($validated['username']);
+        try {
+            Mail::to($solicitante_email)->send(new MaterialEmprestado($emprestimo));
+        } catch (\Throwable $th) {
+            print_r("Não foi possível enviar e-mail para {dados pesso}. Erro: {$th->getMessage()}\n");
         }
         
         return redirect("emprestimos/$emprestimo->id");
