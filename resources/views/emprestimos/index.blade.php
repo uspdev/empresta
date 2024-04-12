@@ -38,7 +38,7 @@
                 $prazo_de_devolucao =  $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos') . ($atrasado ? "<br><b>" .  Carbon\Carbon::parse($data_devolucao)->format('d/m/Y') . "</b>" : ''): 'Não possui';
             @endphp
 
-            <tr @if($atrasado) style="background-color: rgba(255, 0, 0, 0.2)"@endif>
+            <tr @if($atrasado) class="table-danger" @endif>
                 <td>{{ $emprestimo->material->codigo }}</td>
                 <td>{{ $emprestimo->material->categoria->nome }}</td>
                 <td>{{ $emprestimo->material->descricao }}</td>
