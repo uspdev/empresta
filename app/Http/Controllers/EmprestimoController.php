@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoRequest;
+use App\Mail\MaterialDevolvido;
 use App\Mail\MaterialEmprestado;
 use Carbon\Carbon;
 use App\Models\Material;
@@ -213,6 +214,13 @@ class EmprestimoController extends Controller
                 $emprestimo->save();
                 $msg = "Item {$emprestimo->material->codigo} - {$emprestimo->material->descricao} devolvido!";
                 $request->session()->flash('alert-success', $msg);
+
+                $solicitante_email = Pessoa::email($emprestimo->username);
+                try {
+                    Mail::to($solicitante_email)->send(new MaterialDevolvido($emprestimo));
+                } catch (\Throwable $th) {
+                    print_r("Não foi possível enviar e-mail para {dados pesso}. Erro: {$th->getMessage()}\n");
+                }
             }
             else{
                 $request->session()->flash('alert-danger', 'Empréstimo não localizado! Verifique se o código do material informado está emprestado atualmente!');
