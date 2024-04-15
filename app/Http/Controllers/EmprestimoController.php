@@ -13,6 +13,7 @@ use Uspdev\Wsfoto;
 use Uspdev\Replicado\Pessoa;
 use App\Utils\ReplicadoUtils;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EmprestimoController extends Controller
@@ -152,7 +153,7 @@ class EmprestimoController extends Controller
         try {
             Mail::to($solicitante_email)->send(new MaterialEmprestado($emprestimo));
         } catch (\Throwable $th) {
-            print_r("Não foi possível enviar e-mail para {dados pesso}. Erro: {$th->getMessage()}\n");
+            Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
         }
         
         return redirect("emprestimos/$emprestimo->id");
@@ -219,7 +220,7 @@ class EmprestimoController extends Controller
                 try {
                     Mail::to($solicitante_email)->send(new MaterialDevolvido($emprestimo));
                 } catch (\Throwable $th) {
-                    print_r("Não foi possível enviar e-mail para {dados pesso}. Erro: {$th->getMessage()}\n");
+                    Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
                 }
             }
             else{
