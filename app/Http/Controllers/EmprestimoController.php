@@ -149,11 +149,14 @@ class EmprestimoController extends Controller
             return redirect()->back();
         }
 
-        $solicitante_email = Pessoa::email($validated['username']);
-        try {
-            Mail::to($solicitante_email)->send(new MaterialEmprestado($emprestimo));
-        } catch (\Throwable $th) {
-            Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
+        if($material->categoria->enviar_email)
+        {
+            $solicitante_email = Pessoa::email($validated['username']);
+            try {
+                Mail::to($solicitante_email)->send(new MaterialEmprestado($emprestimo));
+            } catch (\Throwable $th) {
+                Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
+            }
         }
         
         return redirect("emprestimos/$emprestimo->id");
@@ -216,11 +219,14 @@ class EmprestimoController extends Controller
                 $msg = "Item {$emprestimo->material->codigo} - {$emprestimo->material->descricao} devolvido!";
                 $request->session()->flash('alert-success', $msg);
 
-                $solicitante_email = Pessoa::email($emprestimo->username);
-                try {
-                    Mail::to($solicitante_email)->send(new MaterialDevolvido($emprestimo));
-                } catch (\Throwable $th) {
-                    Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
+                if($material->categoria->enviar_email)
+                {
+                    $solicitante_email = Pessoa::email($emprestimo->username);
+                    try {
+                        Mail::to($solicitante_email)->send(new MaterialDevolvido($emprestimo));
+                    } catch (\Throwable $th) {
+                        Log::error("Não foi possível enviar e-mail para '{$solicitante_email}'. Erro: {$th->getMessage()}\n");
+                    }
                 }
             }
             else{
