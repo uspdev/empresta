@@ -25,6 +25,7 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'nome' => 'required',
+            'enviar_email' => 'required',
         ];
     }
 }

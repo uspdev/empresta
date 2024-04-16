@@ -53,14 +53,14 @@
                 if ($emprestimo->material->devolucao) {
                     
                     if ($emprestimo->material->dias_da_semana ) 
-                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' weekdays'));
+                        $data_maxima_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' weekdays'));
                     else 
-                        $data_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' days'));
+                        $data_maxima_devolucao = date('Y-m-d H:i:s', strtotime($emprestimo->data_emprestimo . ' +' . $emprestimo->material->prazo . ' days'));
 
-                    $atrasado = $data_devolucao < now();
+                    $atrasado = $data_maxima_devolucao < $emprestimo->data_devolucao;
                 }
 
-                $prazo_de_devolucao =  $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos') . ($atrasado ? "<br><b>" .  Carbon\Carbon::parse($data_devolucao)->format('d/m/Y') . "</b>" : ''): 'Não possui';
+                $prazo_de_devolucao =  $emprestimo->material->devolucao ? $emprestimo->material->prazo . ' dias' . ($emprestimo->material->dias_da_semana ? ' semanais' : ' corridos') . ($atrasado ? "<br><b>" .  Carbon\Carbon::parse($data_maxima_devolucao)->format('d/m/Y') . "</b>" : ''): 'Não possui';
             @endphp
 
             <tr @if($atrasado) class="table-danger" @endif>
