@@ -11,6 +11,7 @@ Empréstimos de materiais.
 - Listar materiais que estão emprestados.
 - Gerenciar usuários visitantes para realizar empréstimos.
 - Restringir empréstimos de materiais na categoria por vínculo e setor.
+- Opcionalmente enviar e-mail para o solicitante ao emprestar e devolver o material da categoria.
 
 ### Alunos de Graduação x Departamentos de Ensino
 
