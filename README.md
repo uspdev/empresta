@@ -25,8 +25,8 @@ Este CRUD pode ser acessado clicando na engrenagem de configurações.
 - Adicionar a biblioteca PHP referente ao sgbd da base replicada
 
 ```bash
-composer install
 cp .env.example .env
+composer install
 ```
 - Editar o arquivo .env
     - Dados da conexão na base do sistema
