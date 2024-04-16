@@ -149,6 +149,7 @@ class EmprestimoController extends Controller
             return redirect()->back();
         }
 
+        // Verificar a necessidade de enviar e-mails em uma queue.
         if($material->categoria->enviar_email)
         {
             $solicitante_email = Pessoa::email($validated['username']);
@@ -219,6 +220,7 @@ class EmprestimoController extends Controller
                 $msg = "Item {$emprestimo->material->codigo} - {$emprestimo->material->descricao} devolvido!";
                 $request->session()->flash('alert-success', $msg);
 
+                // Verificar a necessidade de enviar e-mails em uma queue.
                 if($material->categoria->enviar_email)
                 {
                     $solicitante_email = Pessoa::email($emprestimo->username);

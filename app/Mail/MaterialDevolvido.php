@@ -27,7 +27,7 @@ class MaterialDevolvido extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Material Devolvido',
+            subject: env('APP_NAME') . ' | Material Devolvido',
         );
     }
 

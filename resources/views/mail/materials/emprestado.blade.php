@@ -11,7 +11,7 @@ Data de empréstimo: {{date('d/m/Y', strtotime($data_emprestimo))}} <br>
     else 
         $prazo_devolucao = date('d/m/Y', strtotime($data_emprestimo . ' +' . $material->prazo . ' days'));
 @endphp
-Prazo de devolução: {{$prazo_devolucao}}  
+Prazo de devolução: <b>{{$prazo_devolucao}}</b>  
 @endif
 
 </x-mail::message>

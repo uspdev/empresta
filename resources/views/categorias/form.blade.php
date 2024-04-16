@@ -21,7 +21,7 @@
 
     <br>
     <div class="form-group">
-        <label><b>Enviar e-mail?</b></label>
+        <label><b>Enviar e-mail ao solicitante?</b></label>
         <div class="form-check">
             <input value="1" class="form-check-input" type="radio" name="enviar_email" id="email_sim" @checked($categoria->enviar_email)>
             <label for="email_sim">Sim</label>

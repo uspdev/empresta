@@ -27,7 +27,7 @@ class MaterialEmprestado extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Material Emprestado'
+            subject: env('APP_NAME') . ' | Material Emprestado'
         );
     }
 
