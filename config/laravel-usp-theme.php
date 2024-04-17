@@ -23,7 +23,7 @@ $submenu1 = [
     [
         'type' => 'header',
         'text' => '<i class="fas fa-boxes"></i> Material',
-        'can' => 'admin'
+        'can' => 'balcao'
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Material',
@@ -33,11 +33,11 @@ $submenu1 = [
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Material',
         'url' => 'materials',
-        'can' => 'admin'
+        'can' => 'balcao'
     ],
     [
         'type' => 'divider',
-        'can' => 'admin'
+        'can' => 'balcao'
     ],
     [
         'type' => 'header',
@@ -112,17 +112,17 @@ $menu = [
     [
 	'text' => '<span class="btn btn-success mr-3"><i class="fas fa-handshake"></i> USP</span>',
 	'url' => 'emprestimos/usp',
-        'can' => 'balcao'	
+        'can' => 'balcao'
     ],
     [
 	'text' => '<span class="btn btn-success mr-3"><i class="far fa-handshake"></i> Visitante</span>',
 	'url' => 'emprestimos/visitante',
-        'can' => 'balcao'	
+        'can' => 'balcao'
     ],
     [
 	'text' => '<span class="btn btn-success mr-3"><i class="fas fa-undo"></i> Devolução</span>',
 	'url' => 'emprestimos/devolucao',
-        'can' => 'balcao'	
+        'can' => 'balcao'
     ],
     [
         'text' => '<span class="d-inline-block py-2"><i class="fas fa-user-cog"></i> Administração</span>',
