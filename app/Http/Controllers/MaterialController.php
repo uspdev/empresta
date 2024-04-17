@@ -11,7 +11,7 @@ class MaterialController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin');
+        $this->middleware('can:admin', ['except' => ['index']]);
     }
     /**
      * Display a listing of the resource.
@@ -20,6 +20,8 @@ class MaterialController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('balcao');
+
         $query = Material::orderBy('codigo','asc');
 
         if($request->busca != null){
