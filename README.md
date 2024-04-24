@@ -20,6 +20,13 @@ Para que seja possível restringir alunos de graduação por departamento foi ad
 Exemplo: Somente Alunos de Graduação do Departamento de Ensino Relações Públicas - CRP podem retirar materiais na Categoria Equipamentos do CRP.
 Este CRUD pode ser acessado clicando na engrenagem de configurações.
 
+## Permissões
+- **balcao:** a permissão de balcão pode listar os materiais disponíveis, gerenciar os usuários visitantes e realizar os empréstimos e devoluções dos materiais.
+
+- **manager:** a permissão de manager pode realizar todas as ações da permissão balcao, bem como gerenciar os materiais, as categorias e a relação de cursos x departamentos de ensino.
+  
+- **admin:** a permissão de admin tem todas as permissões do sistema, inclusive o gerenciamento de usuários e acesso às interfaces do [uspdev/senhaunica-socialite](https://github.com/uspdev/senhaunica-socialite) e [uspdev/laravel-tools](https://github.com/uspdev/laravel-tools) 
+
 ## Procedimentos de deploy
  
 - Adicionar a biblioteca PHP referente ao sgbd da base replicada
