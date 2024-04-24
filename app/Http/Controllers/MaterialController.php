@@ -11,7 +11,7 @@ class MaterialController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin', ['except' => ['index']]);
+        $this->middleware('can:manager', ['except' => ['index']]);
     }
     /**
      * Display a listing of the resource.

@@ -14,6 +14,11 @@ use Uspdev\Replicado\Estrutura;
 
 class CategoriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:manager');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +26,6 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('admin');
         $query = Categoria::orderBy('nome','asc');
 
         if($request->busca != null){
@@ -41,8 +45,6 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin');
-
         return view('categorias.create')->with([
             'categoria' => new Categoria,
             'setores' => Estrutura::listarSetores(),
@@ -60,7 +62,6 @@ class CategoriaController extends Controller
      */
     public function store(CategoriaRequest $request)
     {
-        $this->authorize('admin');
         $validated = $request->validated();
         $categoria = Categoria::create($validated);
 
@@ -99,7 +100,6 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        $this->authorize('admin');
         return view('categorias.show', compact('categoria'));
     }
 
@@ -111,8 +111,6 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        $this->authorize('admin');
-
         return view('categorias.edit')->with([
             'categoria' => $categoria,
             'setores' => Estrutura::listarSetores(),
@@ -131,7 +129,6 @@ class CategoriaController extends Controller
      */
     public function update(CategoriaRequest $request, Categoria $categoria)
     {
-        $this->authorize('admin');
         $validated = $request->validated();
         $categoria->update($validated);
 
@@ -172,8 +169,6 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        $this->authorize('admin');
-
         if ($categoria->materials->isNotEmpty()){
             return redirect('/categorias')->with('alert-danger', 'Categoria ainda contém materiais. Por favor delete materiais antes!');
         }
@@ -189,7 +184,6 @@ class CategoriaController extends Controller
 
     public function barcodes(Request $request)
     {
-        $this->authorize('admin');
         $generator = new BarcodeGeneratorPNG();
         $materiais = Material::orderBy('codigo', 'asc');
         if($request->categoria_id[0] == null){

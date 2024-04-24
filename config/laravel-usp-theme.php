@@ -4,21 +4,21 @@ $submenu1 = [
     [
         'type' => 'header',
         'text' => '<i class="far fa-bookmark"></i> Categoria',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Categoria',
         'url' => 'categorias/create',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Categorias',
         'url' => 'categorias',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'type' => 'divider',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'type' => 'header',
@@ -28,7 +28,7 @@ $submenu1 = [
     [
         'text' => '<i class="fas fa-plus-circle"></i> Cadastrar Material',
         'url' => 'materials/create',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'text' => '<i class="fas fa-list-ul"></i> Listar Material',
@@ -104,7 +104,7 @@ $submenu2 = [
     [
         'text' => '<i class="fas fa-barcode"></i> Código de Barras',
         'url' => 'categorias/barcode',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
 
 ];
@@ -142,7 +142,7 @@ $right_menu = [
         'title' => 'Configurações',
         'target' => '_blanck',
         'url' => config('app.url').'/settings',
-        'can' => 'admin'
+        'can' => 'manager'
     ],
     [
         'key' => 'senhaunica-socialite',
