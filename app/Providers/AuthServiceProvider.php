@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('balcao', function ($user) {
-            if(Gate::allows('admin') || Auth::user()->hasPermissionTo('balcao')) return true;
+            if(Gate::allows('manager') || Auth::user()->hasPermissionTo('balcao')) return true;
             $verifica = User::where('username', $user->username)->where('tipo', 'Balcao')->first();
             if($verifica){
                 return true;
