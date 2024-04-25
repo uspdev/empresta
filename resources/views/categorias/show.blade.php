@@ -23,7 +23,7 @@
                     @if ($categoria->vinculos->isEmpty())
                         <td>Todos</td>
                     @else
-                        <td>@foreach($categoria->vinculos as $vinculo) {!!'<div class="d-inline-flex mr-2">&#x1F784; ' . $vinculo->nome . '</div>'!!} @endforeach</td>
+                        <td>{{$categoria->vinculos->pluck('nome')->implode(' / ')}}</td>
                     @endif
             </tr>
             <tr scope="row">
@@ -31,7 +31,7 @@
                     @if ($categoria->setores->isEmpty())
                         <td>Todos</td>
                     @else
-                        <td>@foreach($categoria->setores as $setor) {!!'<div class="d-inline-flex mr-2">&#x1F784; ' . $setor->nomset . '</div>'!!} @endforeach</td>
+                        <td>{{$categoria->setores->pluck('nomset')->implode(' / ')}}</td>
                     @endif
                 </tr>
     </table>

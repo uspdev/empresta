@@ -106,6 +106,11 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
+        if($material->emprestimos()->exists()){
+            session()->flash('alert-danger', 'Este material não pode ser excluído pois já foi emprestado anteriormente.');
+            return back();
+        }
+
         $material->delete();
         return redirect('materials');
     }
