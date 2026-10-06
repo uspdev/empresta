@@ -103,14 +103,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $categoria
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, User $user)
     {
         $request->session()->flash('alert-danger', 'Não é permitido deletar usuário. Troque a senha para desabilitar o acesso');
 
-        #$user->delete();
+        $user->delete();
         return redirect('users');
     }
 }
