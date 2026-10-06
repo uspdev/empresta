@@ -17,7 +17,6 @@ class MaterialCrudTest extends DuskTestCase
             $browser->visit('/')
                 ->clickLink('Faça login usando senha única USP!');
             $browser->waitFor('#loginUsuario')
-                ->type('#callback', 'http://empresta/callback')
                 ->type('#loginUsuario', '1111')
                 ->press('Login')
                 ->waitForText('Itens Emprestados');

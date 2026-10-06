@@ -17,7 +17,6 @@ class UsuarioCrudTest extends DuskTestCase
             $browser->visit('/')
                 ->clickLink('Faça login usando senha única USP!');
             $browser->waitFor('#loginUsuario')
-                ->type('#callback', 'http://empresta/callback')
                 ->type('#loginUsuario', '1111')
                 ->press('Login')
                 ->waitForText('Itens Emprestados');
@@ -45,6 +44,7 @@ class UsuarioCrudTest extends DuskTestCase
                 ->waitForText('Edição de Usuário', 15)
                 ->assertSee('Edição de Usuário')
                 ->type('name', 'Usuario Teste Editado')
+                ->type('password', 'senha_teste_atualizada')
                 ->press('Enviar')
                 ->waitForText('Usuario Teste Editado', 15)
                 ->assertSee('Usuario Teste Editado');
