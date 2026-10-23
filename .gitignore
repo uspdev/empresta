@@ -17,3 +17,6 @@ yarn-error.log
 .lando.yml
 Dockerfile.custom
 php.ini
+.phpunit.cache/test-results
+.phpunit.cache/test-results
+.phpunit.cache/test-results

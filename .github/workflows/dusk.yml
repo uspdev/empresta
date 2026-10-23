@@ -24,6 +24,12 @@ jobs:
           --health-interval=5s
           --health-timeout=5s
           --health-retries=10
+      senhaunica-faker:
+        image: uspdev/senhaunica-faker
+        env:
+          APP_URL: http://127.0.0.1:3141
+        ports:
+          - 3141:3141
 
     steps:
       - name: Checkout
@@ -60,6 +66,7 @@ jobs:
           echo "DB_DATABASE=db" >> .env
           echo "DB_USERNAME=admin" >> .env
           echo "DB_PASSWORD=admin" >> .env
+          echo "SENHAUNICA_DEV=http://127.0.0.1:3141/wsusuario/oauth" >> .env
 
       - name: Generate APP_KEY
         run: php artisan key:generate
